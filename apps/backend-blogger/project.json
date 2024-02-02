@@ -1,0 +1,52 @@
+{
+  "name": "backend-blogger",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/backend-blogger/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/backend-blogger",
+        "main": "apps/backend-blogger/src/main.ts",
+        "tsConfig": "apps/backend-blogger/tsconfig.app.json",
+        "assets": ["apps/backend-blogger/src/assets"],
+        "webpackConfig": "apps/backend-blogger/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "backend-blogger:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "backend-blogger:build:development"
+        },
+        "production": {
+          "buildTarget": "backend-blogger:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/backend-blogger/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
