@@ -4,13 +4,12 @@ import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 
+import * as LIBRARY from 'posts-data/src/index';
+
 describe('PostsController', () => {
   let controller: PostsController;
   let service: PostsService;
 
-  /**
-   * This should be centralised, libraries?
-   */
   let mockPostService = {
     create: jest.fn(),
     findAll: jest.fn(),
@@ -37,18 +36,7 @@ describe('PostsController', () => {
   });
 
   it('should be able to create post via the API endpoint', async() => {
-    /**
-       * This should be centralised, libraries?
-       */
-    let newPost: CreatePostDto = {
-      title: 'title',
-      date: new Date(),
-      author: 'author',
-      description: 'description',
-      tags: [],
-      images: [],
-      comments: []
-    }
+    let newPost: CreatePostDto = LIBRARY.FULL_POST_DATA;
 
     await controller.create(newPost);
     expect(service.create).toHaveBeenCalledWith(newPost);
@@ -61,29 +49,22 @@ describe('PostsController', () => {
     });
 
     it('should be able to find one record with a payload', async() => {
-      let id = '1234-sdassad-5678';
+      let id = LIBRARY.UUID[0];
       await controller.findOne(id);
       expect(service.findOne).toHaveBeenCalledWith(id);
     });
   });
 
   it('should be able to update one record with partial payload',async () => {
-    let id = '1234-sdassad-5678';
-    /**
-     * This should be centralised, libraries?
-     */
-    let updatedPost: UpdatePostDto = {
-      title: 'title',
-      date: new Date(),
-      description: 'description',
-    }
+    let id = LIBRARY.UUID[0];
+    let updatedPost: UpdatePostDto = LIBRARY.PART_POST_DATA;
 
     await controller.update(id, updatedPost);
     expect(service.update).toHaveBeenCalledWith(id, updatedPost);
   });
 
   it('should be able to successfully delete a post with the correct id', async() => {
-    let id = '1234-sdassad-5678'
+    let id = LIBRARY.UUID[0];
     await controller.remove(id);
     expect(service.remove).toHaveBeenCalledWith(id);
   });

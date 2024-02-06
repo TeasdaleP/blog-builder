@@ -6,13 +6,12 @@ import { Repository } from 'typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 
+import * as LIBRARY from 'posts-data/src/index';
+
 describe('PostsService', () => {
   let service: PostsService;
   let postRepository: Repository<Post>;
 
-  /**
-   * This should be centralised, libraries?
-   */
   let mockPostRepository = {
     save: jest.fn(),
     find: jest.fn(),
@@ -43,18 +42,7 @@ describe('PostsService', () => {
 
   describe('create', () => {
     it('should be able to successfully save a quote with correct paylaod', async() => {
-      /**
-       * This should be centralised, libraries?
-       */
-      let newPost: CreatePostDto = {
-        title: 'title',
-        date: new Date(),
-        author: 'author',
-        description: 'description',
-        tags: [],
-        images: [],
-        comments: []
-      }
+      let newPost: CreatePostDto = LIBRARY.FULL_POST_DATA;
   
       await service.create(newPost);
       expect(postRepository.save).toHaveBeenCalledWith(newPost);
@@ -76,15 +64,8 @@ describe('PostsService', () => {
 
   describe('update', () => {
     it('should be able to successfully update a post correct paylaod', async() => {
-      let id = '1234-sdassad-5678';
-      /**
-       * This should be centralised, libraries?
-       */
-      let updatedPost: UpdatePostDto = {
-        title: 'title',
-        date: new Date(),
-        description: 'description',
-      }
+      let id = LIBRARY.UUID[0];
+      let updatedPost: UpdatePostDto = LIBRARY.PART_POST_DATA;
   
       await service.update(id, updatedPost);
       expect(postRepository.save).toHaveBeenCalledWith({
@@ -96,7 +77,7 @@ describe('PostsService', () => {
 
   describe('remove', () => {
     it('should be able to successfully delete a post with the correct id', async() => {
-      let id = '1234-sdassad-5678'
+      let id = LIBRARY.UUID[0];
       await service.remove(id);
       expect(postRepository.delete).toHaveBeenCalledWith(id);
     });
