@@ -23,6 +23,7 @@
     "@nx/angular": "17.3.0",
     "axios": "^1.0.0",
     "class-validator": "^0.14.1",
+    "moment": "^2.30.1",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",

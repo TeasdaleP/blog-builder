@@ -23,9 +23,6 @@ export class PostsService {
     post.images = createPostDto.images,
     post.tags = createPostDto.tags
     post.comments = createPostDto.comments
-    /**
-     *  TODO: This needs to be refactored as comments are held in two tables
-     */
 
     return this.postRepository.save(post);
   }
@@ -49,9 +46,6 @@ export class PostsService {
     post.images = updatePostDto.images,
     post.tags = updatePostDto.tags
     post.comments = updatePostDto.comments
-    /**
-     *  TODO: This needs to be refactored as comments are held in two tables
-     */
   
     return this.postRepository.save(post);
   }

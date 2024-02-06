@@ -14,7 +14,7 @@ export class Post {
     @Column({ type: 'varchar', length: 255 })
     author: string;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar'})
     description: string;
 
     @Column({ type: 'text', array: true, default: [], nullable: true })
