@@ -1,0 +1,27 @@
+.alert-custom {
+    background-color: white;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    border-top-left-radius: 24px;
+    align-items: center;
+    text-align: center;
+    padding: 20px 15px 20px 15px;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    line-height: 28px;
+
+    &__error {
+        border-bottom: 4px solid #E14D65;
+        color: #E14D65; 
+    }
+
+    &__success {
+        border-bottom: 4px solid #219E8F;
+        color: #219E8F;
+    }
+
+    &__info {
+        border-bottom: 4px solid #2282EB;
+        color: #2282EB;
+    }
+}

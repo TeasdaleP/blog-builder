@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [NavigationComponent, FooterComponent, RouterModule],
   selector: 'blog-builder-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styles: ['']
 })
-export class AppComponent {
-  title = 'frontend-blogger';
+export class AppComponent implements OnInit {
+
+  constructor() {}
+
+  ngOnInit(){}
 }

@@ -1,0 +1,42 @@
+.icon {
+    &__error {
+        text-align: center;
+        border: 2px solid #CA1F25;
+        border-radius: 16px 16px 16px 16px;
+    }
+
+    &__warning {
+        text-align: center;
+        border: 2px solid #FCB936;
+        border-radius: 16px 16px 16px 16px;
+    }
+
+    &__success {
+        text-align: center;
+        border: 2px solid #219E8F;
+        border-radius: 16px 16px 16px 16px;
+    }
+
+    &__inner {
+        padding: 20px 20px 20px 20px;
+    }
+
+    &__inner-small {
+        padding: 15px 15px 15px 15px;
+    }
+
+    &__inner-smaller {
+        padding: 10px 16px 10px 16px;
+    }
+
+    &__text {
+        font-family: Poppins;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 48px;
+        letter-spacing: 0em;
+        text-align: center;
+
+    }
+}

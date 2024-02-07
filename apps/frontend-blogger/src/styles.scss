@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css';
+@import 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css';
+
+$blog-primary: #98d0c0;
+$blog-secondary: #3c483d;
+
+$blog-yellow: #FCB936;
+$blog-green: #219E8F;
+$blog-blue: #2282EB;
+$blog-red: #CA1F25;
+$blog-black: #000;
+
+$blog-hero: #F6F2F1;
+$blog-body: #FBF9F8;
+$blog-light: #F3F3F4;
+$blog-footer: #EDE5E3;
+$blog-dark: #CCB8B4;
+
+@import './assets/scss/cards.scss';
+@import './assets/scss/icons.scss';
+@import './assets/scss/typography.scss';
+@import './assets/scss/images.scss';
+@import './assets/scss/alert.scss';
+@import './assets/scss/accordin.scss';
+@import './assets/scss/buttons.scss';
+@import './assets/scss//landing.scss';
+
+html,
+body {
+    font-family: "Halant", serif;
+    height: 100%;
+    margin: 0;
+}
+
+.view-mobile {
+	display: none;
+}
+
+@media screen and (max-width: 600px) {
+	.view-mobile {
+		display: inherit;
+	}	
+}
+
+.view-desktop {
+	display: inherit;
+}
+
+@media screen and (max-width: 600px) {
+	.view-desktop {
+		display: none;
+	}	
+}

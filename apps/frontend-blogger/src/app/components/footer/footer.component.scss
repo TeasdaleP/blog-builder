@@ -1,0 +1,75 @@
+@import '../../../styles.scss';
+
+.footer {
+    background-color: $blog-footer;
+    border-bottom: 12px solid $blog-secondary;
+
+    &-inner {
+        padding-bottom: 30px;
+        padding-top: 24px;
+    }
+
+    &-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &-sentence {
+        font-weight: 500;
+        color: $blog-secondary;
+    }
+}
+
+span {
+    font-weight: 700;
+}
+
+footer .footer-inner .left a {
+    margin-left: 32px;
+}
+
+footer .footer-inner .right a {
+    margin-left: 15px;
+}
+
+@media (max-width: 992px) {
+    .footer {
+        blog-logo {
+            display: block;
+            margin-bottom: 32px;
+        }
+
+        .footer-content {
+            align-items: flex-start;
+
+            .left {
+                a {
+                    margin-left: 0;
+                    margin-right: 32px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 450px) {
+    .footer {
+        blog-logo {
+            margin-bottom: 0;
+        }
+
+        .footer-content {
+            flex-direction: column;
+
+            .right {
+                margin-top: 32px;
+
+                a {
+                    margin-left: 0;
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+}

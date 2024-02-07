@@ -1,0 +1,54 @@
+<div class="navigation">
+    <div class="navigation-inner">
+        <div class="navigation-row">
+            <div class="navigation-column">
+                <a class="navigation-image" [routerLink]="['/home']">
+                    <div>
+                        <img width="134" src="assets/logos/logo.png" alt="blog-logo">
+                    </div>
+                </a>
+            </div>
+            <div class="navigation-column">
+                <div class="view-desktop">
+                    <div class="navigation-row">
+                        <div class="navigation-column">
+                            <div class="navigation-links">
+                                <a class="navigation-links-link" [routerLink]="['/home']">Home</a>
+                            </div>
+                        </div>
+                        <div class="navigation-column" *ngIf="!loggedin">
+                            <div class="navigation-links">
+                                <a class="navigation-links-link" [routerLink]="['/login']">Login</a>
+                            </div>
+                        </div>
+                        <div class="navigation-column" *ngIf="loggedin">
+                            <div class="navigation-profile" [routerLink]="['/profile']">
+                                Profile
+                                <img class="navigation-profile-image" [src]=photo alt="Profile Image"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="view-mobile">
+                    <div class="navigation-column">
+
+                        <button class="navigation-hamburger navigation-hamburger--spin" type="button" (click)="toggleNavigation()" [class.navigation-active]="open">
+                            <span class="navigation-hamburger-box">
+                                <span class="navigation-hamburger-inner"></span>
+                            </span>
+                        </button>
+
+                        <ng-container *ngIf="open">
+                            <div class="navigation-mobile" (click)="toggleNavigation()" [class.navigation-active]="open">
+                                <div class="navigation-mobile-links" [routerLink]="['/home']">Home</div>
+                                <div class="navigation-mobile-links" [routerLink]="['/login']" *ngIf="!loggedin">Login</div>
+                                <div class="navigation-mobile-links" [routerLink]="['/profile']" *ngIf="loggedin">Profile</div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
