@@ -18,6 +18,10 @@ $blog-light: #F3F3F4;
 $blog-footer: #EDE5E3;
 $blog-dark: #CCB8B4;
 
+$font-default: "Roboto", serif;
+$font-content: "Rubik", sans-serif;
+$font-heading: "Pacifico", sans-serif;
+
 @import './assets/scss/cards.scss';
 @import './assets/scss/icons.scss';
 @import './assets/scss/typography.scss';
@@ -29,8 +33,8 @@ $blog-dark: #CCB8B4;
 
 html,
 body {
-    font-family: "Halant", serif;
     height: 100%;
+	width: 100%;
     margin: 0;
 }
 

@@ -1,0 +1,302 @@
+@import '../styles.scss';
+
+.hero {
+    background-color: $blog-hero;
+
+    &-back {
+        padding-left: 12.5%;
+        padding-right: 12.5%;
+        display: block;
+    }
+
+    &-inner {
+        padding: 2.5em 0 2.5em 0;
+    }
+
+    &-link {
+        font-family: Poppins;
+        font-size: 1em;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 1.75em;
+        letter-spacing: 0em;
+        text-align: left;
+        color: $blog-blue;
+        cursor: pointer;
+    }
+}
+
+.hotel {
+    position: relative;
+    height: 15.625em;
+
+    &-higher {
+        height: 7.8125em;
+        background-color: $blog-hero;
+    }
+
+    &-lower {
+        height: 7.8125em;
+        background: $blog-body;
+    }
+
+    &-container {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        padding-left: 11%;
+        padding-right: 11%;
+        z-index: 1;
+    }
+
+    &-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &-column { 
+        &-image {
+            flex: 25%;
+        }
+
+        &-small {
+            flex: 25%;
+        }
+
+        &-large {
+            flex: 50%;
+        }
+    }
+
+    &-card {
+        position: relative;
+        background-color:#E7E7E7;
+        border: 1px solid #E7E7E7;
+        border-radius: 0.375em 0.375em 0.375em 0.375em;
+
+        &-inner {
+            padding: 2.5em 2.5em 2.5em 2.5em;
+        }
+    }
+
+    &-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.375em 0 0 0.375em;
+        background: {
+            position: center center;
+            repeat: no-repeat;
+            size: cover;
+        };
+    }
+
+    &-name {
+        font-family: Halant;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 68px;
+        letter-spacing: 0em;
+    }
+
+    &-location {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 27px;
+    }
+
+    &-booking {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 84.27px;
+        height: 18px;
+    }
+
+    &-price {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 62px;
+        text-align: center;
+    }
+
+    &-button {
+        margin: auto;
+        background: $blog-blue;
+        color: #FFFFFF;
+        font-size: 17px;
+        line-height: 17px;
+        box-shadow: 0px 4px 16px rgba(34, 130, 235, 0.32);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 12px;
+        border: 2px solid $blog-blue;
+    }
+
+    &-components {
+        position: relative;
+        padding-top: 1em;
+        padding-left: 15%;
+        padding-right: 15%;
+        padding-bottom: 3em;
+        background: $blog-body;
+    }
+
+    &-scroller {
+        display: flex;
+        flex-wrap: wrap;
+        border-bottom: 1px solid #E5E5E5;
+        padding-bottom: 1em;
+
+        &-item {
+            flex: 20%;
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 30px;
+            color: #000;
+
+            &-disabled {
+                color: $blog-footer;
+            }
+        }
+    }
+}
+
+.hotel-scroller-item:hover, .hotel-scroller-item:active, .hotel-scroller-item:visited {
+    cursor: pointer;
+    color: $blog-blue;
+}
+
+.hotel-scroller-item-disabled:hover, .hotel-scroller-item-disabled:active, .hotel-scroller-item-disabled:visited {
+    cursor: pointer;
+    color: $blog-dark;
+
+}
+
+.hotel-button:hover, .hotel-button:active, .hotel-button:visited {
+    background: #ffffff;
+    color: $blog-blue;
+    border: 2px solid $blog-blue;
+}
+
+@media screen and (max-width: 600px) {
+    .hero {
+        background-color: $blog-hero;
+    
+        &-back {
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+    
+        &-inner {
+            padding: 2em 0 2em 0
+        }
+    
+        &-link {
+            font-size: 1em;
+            line-height: 1.5em;
+        }
+    }
+
+    .hotel {
+        position: relative;
+        height: 420px;
+    
+        &-higher {
+            height: 210px;
+            background-color: $blog-hero;
+        }
+    
+        &-lower {
+            height: 210px;
+            background: $blog-body;
+        }
+    
+        &-container {
+            top: 20px;
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+    
+        &-column { 
+            &-image {
+                flex: 100%;
+            }
+
+            &-small {
+                display: none;
+            }
+    
+            &-large {
+                flex: 100%;
+            }
+        }
+    
+        &-card {
+            position: relative;
+            background-color: #fff;
+            border: 1px solid #fff;
+            border-radius: 1em 1em 1em 0;
+            z-index: 5;
+            box-shadow: 0px 8px 32px rgba(204, 184, 180, 0.64);
+    
+            &-inner {
+                padding: 1em 1em 1em 1em;
+            }
+        }
+    
+        &-image {
+            width: 100%;
+            height: 15em;
+            border-radius: 1em 1em 0 0;
+            background: {
+                position: center center;
+                repeat: no-repeat;
+                size: cover;
+            };
+        }
+    
+        &-name {
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 48px;
+        }
+    
+        &-location {
+            font-size: 14px;
+            line-height: 20px;
+        }
+    
+        &-booking {
+           display: none;
+        }
+    
+        &-price {
+            display: none;
+        }
+    
+        &-button {
+           display: none;
+        }
+
+        &-scroller {
+            display: none;
+        }
+
+        &-components {
+            border: 1px solid $blog-body;
+            position: relative;
+            padding: 0 1em 2em 1em;
+            background: $blog-body;
+        }
+    }
+}

@@ -16,13 +16,13 @@
     }
 
     &-sentence {
-        font-weight: 500;
+        font-family: $font-content;
         color: $blog-secondary;
     }
 }
 
 span {
-    font-weight: 700;
+    font-weight: bolder;
 }
 
 footer .footer-inner .left a {

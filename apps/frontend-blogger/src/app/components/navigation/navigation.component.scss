@@ -28,7 +28,7 @@
         border-radius: 2em;
         text-align: left;
         padding: 0 0.9375em 0 0.9375em;
-        font-family: Poppins;
+        font-family: $font-content;
         font-style: normal;
         font-weight: normal;
         font-size: 1em;
@@ -51,12 +51,12 @@
         justify-content: center;
 
         &-link {
-            font-family: Poppins;
+            font-family: $font-content;
             font-style: normal;
             font-weight: normal;
             font-size: 16px;
             line-height: 64px;
-            color: #1F1F1F;
+            color: $blog-secondary;
             padding: 0 25px 0 25px;
             font-weight: 600;
         }
@@ -102,9 +102,9 @@
         display: none;
 
         &-links {
-            font-family: Poppins,sans-serif;
+            font-family: $font-content;
             font-size: 1.9375em !important;
-            color: black;
+            color: $blog-secondary;
             margin-bottom: 1.5625em;
             text-decoration: underline;
             z-index: 6;

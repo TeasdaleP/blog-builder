@@ -1,0 +1,115 @@
+@import '../../../styles.scss';
+
+.hero {
+    position: relative;
+    background-color: $blog-hero;
+    padding-top: 1.875em;
+    padding-bottom: 3.75em;
+    width: 100%;
+
+    &-inner {
+        padding-left: 12.5%;
+        padding-right: 12.5%;
+    }
+
+    &-row {
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+    }
+
+    &-column {
+        display: flex;
+        flex-direction: column;
+
+        &-small {
+            flex-basis: 12.5%;
+        }
+
+        &-large {
+            flex-basis: 75%;
+        }
+    }
+
+    &-title {
+        font-family: $font-heading;
+        font-size: 3.75em;
+        font-weight: bolder;
+        letter-spacing: 0em;
+        text-align: left;
+        color: $blog-dark;
+        text-shadow: -1px 0 $blog-secondary, 0 1.5px $blog-secondary, 1.5px 0 $blog-secondary, 0 -1px $blog-secondary;
+    }
+
+    &-subtitle {
+        font-family: $font-content;
+        font-size: 1.25em;
+        line-height: 1.75em;
+        letter-spacing: 0em;
+        text-align: left;
+        color: black;
+    }
+
+    &-emoji {
+        display: inherit;
+
+        &-icons {
+            position: relative;
+            margin: auto;
+            padding: 0;
+        }
+
+        &-icon {
+            font-family: "Noto Color Emoji", sans-serif;
+            font-size: 4em;
+            font-weight: bolder;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .hero {
+        padding-top: 0.9375em;
+        padding-bottom: 1.25em;
+
+        &-inner {
+            padding-left: 7.5%;
+            padding-right: 7.5%;
+        }
+
+        &-row {
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+        }
+    
+        &-column {
+            display: flex;
+            flex-direction: column;
+    
+            &-small {
+                flex-basis: 100%;
+            }
+
+            &-medium {
+                flex-basis: 100%;
+            }
+    
+            &-large {
+                flex-basis: 100%;
+            }
+        }
+
+        &-title {
+            font-size: 1.875em;
+        }
+
+        &-subtitle {
+            z-index: 2;
+            font-size: 0.75em;
+            text-align: left;
+            padding-top: 0.625em;
+            padding-bottom: 0.625em;
+        }
+    }
+}
