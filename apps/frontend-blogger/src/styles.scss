@@ -22,20 +22,22 @@ $font-default: "Roboto", serif;
 $font-content: "Rubik", sans-serif;
 $font-heading: "Pacifico", sans-serif;
 
-@import './assets/scss/cards.scss';
-@import './assets/scss/icons.scss';
-@import './assets/scss/typography.scss';
-@import './assets/scss/images.scss';
-@import './assets/scss/alert.scss';
-@import './assets/scss/accordin.scss';
 @import './assets/scss/buttons.scss';
-@import './assets/scss//landing.scss';
 
 html,
 body {
+	font-weight: $font-default;
     height: 100%;
 	width: 100%;
     margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: $font-heading;
+}
+
+h6, p, ul, li, ol {
+	font-family: $font-content;
 }
 
 .view-mobile {

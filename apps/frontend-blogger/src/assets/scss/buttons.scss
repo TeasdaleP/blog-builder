@@ -1,11 +1,12 @@
 .button {
-    font-family: Poppins;
+    font-family: $font-content;
     padding: 12.5px 26px;
+    max-width: 200px;
 
-    &__blue {
-        background: #2282EB;
+    &-primary {
+        background: $blog-primary;
         border-radius: 6px;
-        color: #FFFFFF;
+        color: $blog-secondary;
         border: 2px solid #FFFFFF;
         width: 100%;
         height: 100%;
@@ -23,7 +24,7 @@
         }
     }
 
-    &__grey {
+    &-grey {
         background: #EDE5E3;
         border-radius: 6px;
         color: #6c757d;
@@ -45,13 +46,13 @@
     }
 }
 
-.button__blue:hover, .button__blue:active, .button__blue:visited {
+.button-primary:hover, .button-primary:active, .button-primary:visited {
     background: #FFFFFF;
-    color: #2282EB;
-    border: 2px solid #2282EB;
+    color: $blog-secondary;
+    border: 2px solid $blog-primary;
 }
 
-.button__grey:hover, .button__grey:active, .button__grey:visited {
+.button-grey:hover, .button-grey:active, .button-grey:visited {
     background: #FFFFFF;
     color: #6c757d;
     border: 2px solid #6c757d;

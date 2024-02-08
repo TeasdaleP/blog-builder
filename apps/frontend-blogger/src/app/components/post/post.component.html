@@ -1,0 +1,15 @@
+<div class="post">
+    <div class="post-left">
+        <img class="post-image" src="assets/logos/post-default.png" alt="Default Blog Image" *ngIf="!image">
+        <img class="post-image" [src]="image" [alt]="title" *ngIf="image">
+    </div>
+    <div class="post-content post-border">
+        <div class="post-spacing">
+            <h2 class="post-title">{{ title | titlecase }}</h2>
+            <p>{{ description | slice:0:250 }}...</p>
+            <div class="post-right">
+                <button class="button button-primary" (click)="readMore()">Read More</button>
+            </div>
+        </div>
+    </div>
+</div>
