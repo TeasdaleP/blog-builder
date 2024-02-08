@@ -1,0 +1,49 @@
+<div class="hero">
+    <div class="hero-back">
+        <div class="hero-inner">
+            <div class="hero-link" [routerLink]="['/list']">
+                <i class="fas fa-angle-double-left"></i> Return to the Blog List
+            </div>
+        </div>
+    </div>
+</div>
+<div class="details">
+    <div class="details-higher"></div>
+    <div class="details-lower"></div>
+    <div class="details-container">
+        <div class="details-card">
+            <div class="details-row">
+                <div class="details-column-image">
+                    <div class="details-image" [ngStyle]="{'background-image': 'url('+ image +')'}" *ngIf="image"></div>
+                    <div class="details-image" [ngStyle]="{'background-image': 'url(assets/logos/post-default.png)'}" *ngIf="!image"></div>
+                </div>
+                <div class="details-column-large">
+                    <div class="details-card-inner">
+                        <div class="details-heading">Title Of The Post?</div>
+                        <div class="details-subheading"> Phil Teasdale</div>
+                        <div class="details-subheading"> 2nd February 2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="details-content">
+    <div class="details-content-card">
+        <div class="details-content-inner">
+            Ultrices euismod. Mauris tellus integer fringilla luctus consectetuer accumsan sapien consequat natoque amet lobortis habitant hymenaeos suscipit urna, mollis Commodo dis dui tempor phasellus cras nonummy, lacinia euismod blandit libero. Convallis. Ultrices hac fames.
+        </div>
+    </div>
+    <div class="details-content-card">
+        <div class="details-content-inner">
+            <div class="details-content-heading">Photos</div>
+            <blog-builder-photos [photos]="photos"></blog-builder-photos>
+        </div>
+    </div>
+    <div class="details-content-card">
+        <div class="details-content-inner">
+            <div class="details-content-heading">Comments</div>
+            Comment will go here!
+        </div>
+    </div>
+</div>

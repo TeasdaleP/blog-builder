@@ -1,0 +1,115 @@
+@import '../../../styles.scss';
+
+.details {
+    position: relative;
+    height: 15.625em;
+
+    &-higher {
+        height: 7.8125em;
+        background-color: $blog-hero;
+    }
+
+    &-lower {
+        height: 7.8125em;
+        background: $blog-body;
+    }
+
+    &-container {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        padding-left: 11%;
+        padding-right: 11%;
+        z-index: 1;
+    }
+
+    &-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &-column { 
+        &-image {
+            flex: 25%;
+        }
+
+        &-small {
+            flex: 25%;
+        }
+
+        &-large {
+            flex: 50%;
+        }
+    }
+
+    &-card {
+        position: relative;
+        background-color:#E7E7E7;
+        border: 1px solid #E7E7E7;
+        border-radius: 0.375em 0.375em 0.375em 0.375em;
+
+        &-inner {
+            padding: 2.5em 2.5em 2.5em 2.5em;
+        }
+    }
+
+    &-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.375em 0em 0em 0.375em;
+        background: {
+            position: center center;
+            repeat: no-repeat;
+            size: cover;
+        };
+    }
+
+    &-heading {
+        font-family: $font-heading;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 48px;
+        letter-spacing: 0;
+        color: $blog-secondary;
+    }
+
+    &-subheading {
+        font-family: $font-content;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 27px;
+    }
+
+    &-content {
+        position: relative;
+        padding-top: 12px;
+        padding-left: 15%;
+        padding-right: 15%;
+        padding-bottom: 36px;
+        background: $blog-body;
+
+        &-heading {
+            font-family: $font-heading;
+            font-size: 26px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 36px;
+            letter-spacing: 0;
+            color: $blog-secondary;
+        }
+
+        &-card {
+            background: $blog-body;
+            border: 1.5px solid $blog-footer;
+            box-sizing: border-box;
+            border-radius: 6px;
+            margin-bottom: 24px;
+        }
+
+        &-inner {
+            padding: 32px 44px 32px 44px;
+        }
+    }
+}

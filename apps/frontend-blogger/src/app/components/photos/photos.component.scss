@@ -1,0 +1,42 @@
+@import '../../../styles.scss';
+
+.photos {
+    padding-top: 16px;
+
+    &-container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+    }
+
+    &-image {
+        position: relative;
+        width: 30%;
+        height: 250px;
+        border-radius: 6px;
+        background: {
+            position: center center;
+            repeat: no-repeat;
+            size: cover;
+        }
+    }
+
+    &-badge {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        color: #FFFFFF;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(8px);
+        border-radius: 8px;
+        text-align: center;
+        padding: 8px 12px;
+        z-index: 9; 
+    }
+
+    &-selected {
+        color: $blog-red;
+    }
+}

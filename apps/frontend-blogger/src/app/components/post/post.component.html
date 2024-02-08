@@ -1,7 +1,7 @@
 <div class="post">
     <div class="post-left">
-        <img class="post-image" src="assets/logos/post-default.png" alt="Default Blog Image" *ngIf="!image">
-        <img class="post-image" [src]="image" [alt]="title" *ngIf="image">
+        <div class="post-image" [ngStyle]="{'background-image': 'url('+ image +')'}" *ngIf="image"></div>
+        <div class="post-image" [ngStyle]="{'background-image': 'url(assets/logos/post-default.png)'}" *ngIf="!image"></div>
     </div>
     <div class="post-content post-border">
         <div class="post-spacing">
