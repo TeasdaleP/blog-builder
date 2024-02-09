@@ -1,0 +1,55 @@
+<blog-builder-backwards [link]=" '/login' " [text]=" 'return to login' "></blog-builder-backwards>
+<div class="signup">
+    <div class="signup-inner">
+        <div class="signup-card">
+            <div class="signup-card-inner">
+                <div class="signup-heading">Sign up</div>
+                <div class="signup-content">
+                    Join the blog so you can leave comments and like photos. If you upgrade, you'll be able to create your own posts too!  
+                </div>
+                <form [formGroup]="form">
+                    <div class="form-group form-group-full form-spacing">
+                        <input class="form-input" id="firstname" type="text" formControlName="firstname" placeholder=" " />
+                        <div class="form-spacer form-short"></div>
+                        <label class="form-label" for="firstname">First Name</label>
+                        <ng-container *ngIf="form.controls['firstname'].touched && form.controls['firstname'].invalid">
+                            <div class="form-error" *ngIf="form.controls['firstname'].errors && form.controls['firstname'].errors['required']">Your name is required</div>
+                        </ng-container>
+                    </div>
+
+                    <div class="form-group form-group-full form-spacing">
+                        <input class="form-input" id="lastname" type="text" formControlName="lastname" placeholder=" " />
+                        <div class="form-spacer form-short"></div>
+                        <label class="form-label" for="lastname">Last Name</label>
+                        <ng-container *ngIf="form.controls['lastname'].touched && form.controls['lastname'].invalid">
+                            <div class="form-error" *ngIf="form.controls['lastname'].errors && form.controls['lastname'].errors['required']">Your name is required</div>
+                        </ng-container>
+                    </div>
+
+                    <div class="form-group form-group-full form-spacing">
+                        <input class="form-input" id="email" type="text" formControlName="email" placeholder=" " />
+                        <div class="form-spacer form-short"></div>
+                        <label class="form-label" for="email">Email Address</label>
+                        <ng-container *ngIf="form.controls['email'].touched && form.controls['email'].invalid">
+                            <div class="form-error" *ngIf="form.controls['email'].errors && form.controls['email'].errors['required']">Your email is required</div>
+                            <div class="form-error" *ngIf="form.controls['email'].errors && form.controls['email'].errors['email']">The email is invalid</div>
+                        </ng-container>
+                    </div>
+
+                    <div class="form-group form-group-full form-spacing">
+                        <input class="form-input" id="password" type="text" formControlName="password" placeholder=" " />
+                        <div class="form-spacer form-short"></div>
+                        <label class="form-label" for="password">Password</label>
+                        <ng-container *ngIf="form.controls['password'].touched && form.controls['password'].invalid">
+                            <div class="form-error" *ngIf="form.controls['password'].errors && form.controls['password'].errors['required']">Your password is required</div>
+                        </ng-container>
+                    </div>
+
+                    <div class="signup-middle">
+                        <button class="button button-primary" (click)="onSubmit()">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

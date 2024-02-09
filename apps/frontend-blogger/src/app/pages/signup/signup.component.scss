@@ -1,27 +1,25 @@
 @import '../../../styles.scss';
 
-.login {
+.signup {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    background-color: $blog-hero;
     width: 100%;
     height: 65%;
-    background-color: $blog-hero;
-
-    &-inner {
-
-    }
 
     &-row {
         display: flex;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
+        justify-content: center;
+        gap: 30px;
     }
 
     &-card {
         background-color: $blog-body;
         border: 1px solid $blog-dark;
         border-radius: 8px;
-        width: 400px;
+        width: 500px;
 
         &-inner {
             padding: 24px;
@@ -40,10 +38,19 @@
         padding-bottom: 24px;
     }
 
+    &-content {
+        color: $blog-secondary;
+        text-align: center;
+    }
+
     &-signup {
         text-align: center;
         font-weight: 500;
         font-size: 18px;
         padding: 20px;
+    }
+
+    &-middle {
+        justify-content: center;
     }
 }
