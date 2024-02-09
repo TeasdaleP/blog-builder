@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PhotosComponent } from '../../components/photos/photos.component';
+import { BackwardsComponent } from '../../components/backwards/backwards.component';
 
 @Component({
   selector: 'blog-builder-details',
   standalone: true,
-  imports: [CommonModule, PhotosComponent, RouterModule],
+  imports: [CommonModule, PhotosComponent, BackwardsComponent, RouterModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss',
 })

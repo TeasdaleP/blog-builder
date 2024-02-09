@@ -1,11 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { BackwardsComponent } from '../../components/backwards/backwards.component';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'blog-builder-login',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BackwardsComponent, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {}
+export class LoginComponent implements OnInit {
+  public form: FormGroup;
+  public error: boolean = false;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.formSetup();
+  }
+
+  ngOnInit(): void {
+      
+  }
+
+  public onSubmit(): void {
+    this.error = !this.error;
+    this.form.reset();
+  }
+
+  private formSetup(): FormGroup { 
+    return this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
+}

@@ -2,8 +2,6 @@
 
 @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css';
 @import 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css';
-// @import '../../../node_modules/slick-carousel/slick/slick.scss';
-// @import 'node_modules/slick-carousel/slick/slick-theme.scss';
 
 $blog-primary: #98d0c0;
 $blog-secondary: #3c483d;
@@ -26,46 +24,80 @@ $font-heading: "Pacifico", sans-serif;
 
 html,
 body {
-	font-weight: $font-default;
+    font-weight: $font-default;
     height: 100%;
-	width: 100%;
+    width: 100%;
     margin: 0;
 }
 
-h1, h2, h3, h4, h5 {
-	font-family: $font-heading;
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: $font-heading;
 }
 
-h6, p, ul, li, ol {
-	font-family: $font-content;
+h6,
+p,
+ul,
+li,
+ol {
+    font-family: $font-content;
 }
 
 /** Responsiveness **/
 .view-mobile {
-	display: none;
+    display: none;
 }
 
 @media screen and (max-width: 600px) {
-	.view-mobile {
-		display: inherit;
-	}	
+    .view-mobile {
+        display: inherit;
+    }
 }
 
 .view-desktop {
-	display: inherit;
+    display: inherit;
 }
 
 @media screen and (max-width: 600px) {
-	.view-desktop {
-		display: none;
-	}	
+    .view-desktop {
+        display: none;
+    }
+}
+
+/** Banner **/
+.banner {
+    font-family: $font-content;
+    padding: 12.5px 26px;
+    margin-bottom: 26px;
+
+    &-error {
+        background-color: $blog-light;
+        text-align: center;
+        color: $blog-red;
+        border-radius: 6px;
+        border: 2px solid $blog-red;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /** Buttons **/
 .button {
     font-family: $font-content;
     padding: 12.5px 26px;
-    max-width: 200px;
+
+    &-inline {
+        padding-left: 10px;
+        color: $blog-blue;
+        cursor: pointer;
+    }
+
+    &-small {
+        max-width: 200px;
+    }
 
     &-primary {
         background: $blog-primary;
@@ -110,17 +142,28 @@ h6, p, ul, li, ol {
     }
 }
 
-.button-primary:hover, .button-primary:active, .button-primary:visited {
+.button-primary:hover,
+.button-primary:active,
+.button-primary:visited {
     background: #FFFFFF;
     color: $blog-secondary;
     border: 2px solid $blog-primary;
 }
 
-.button-grey:hover, .button-grey:active, .button-grey:visited {
+.button-grey:hover,
+.button-grey:active,
+.button-grey:visited {
     background: #FFFFFF;
     color: #6c757d;
     border: 2px solid #6c757d;
 }
+
+.button-inline:hover,
+.button-inline:active,
+.button-inline:visited {
+    text-decoration: underline;
+}
+
 
 /** Hero **/
 .hero {
@@ -147,4 +190,22 @@ h6, p, ul, li, ol {
         color: $blog-blue;
         cursor: pointer;
     }
+}
+
+.hero-link:active,
+.hero-link:hover,
+.hero-link:visited {
+    text-decoration: underline;
+}
+
+/** Forms **/
+
+.form {
+    position: relative;
+
+    &-group {}
+
+    &-label {}
+
+    &-input {}
 }

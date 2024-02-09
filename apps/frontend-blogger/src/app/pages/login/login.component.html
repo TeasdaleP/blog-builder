@@ -1,0 +1,35 @@
+<blog-builder-backwards [link]=" '/link' " [text]=" 'return to homepage' "></blog-builder-backwards>
+<div class="login">
+    <div class="login-inner">
+        <div class="login-card">
+            <div class="login-card-inner">
+                <div class="login-heading">Please Sign In</div>
+                <form [formGroup]="form">
+                    <div class="banner banner-error" *ngIf="error">Sorry! Your email and password is invalid. Please try again</div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="firstname">Email</label>
+                        <input class="form-input" id="firstname" type="text" formControlName="email" placeholder="Please enter your email" />
+                        <ng-container *ngIf="form.controls['email'].touched && form.controls['email'].invalid">
+                            <span class="form-error" *ngIf="form.controls['email'].errors && form.controls['email'].errors['required']">Your email is required</span>
+                            <span class="form-error" *ngIf="form.controls['email'].errors && form.controls['email'].errors['email']">The email you entered doesnt look correct</span>
+                        </ng-container>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="firstname">Password</label>
+                        <input class="form-input" id="firstname" type="text" formControlName="password" placeholder="Please enter your password" />
+                        <ng-container *ngIf="form.controls['password'].touched && form.controls['password'].invalid">
+                            <span class="form-error" *ngIf="form.controls['password'].errors && form.controls['password'].errors['required']">Your password is required</span>
+                        </ng-container>
+                    </div>
+
+                    <button class="button button-primary" (click)="onSubmit()" [disabled]="!form.touched || form.invalid">Proceed</button>
+                </form>
+            </div>
+        </div>
+        <div class="login-signup">
+            Not registered? <span class="button-inline" [routerLink]="['/signup']"> Sign up <i class="fas fa-angle-double-right"></i></span>
+        </div>
+    </div>
+</div>
