@@ -13,7 +13,6 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 })
 export class LoginComponent implements OnInit {
   public form: FormGroup;
-  public error: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.form = this.formSetup();
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.error = !this.error;
     this.form.reset();
   }
 

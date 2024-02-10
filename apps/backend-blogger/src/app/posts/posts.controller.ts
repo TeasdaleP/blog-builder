@@ -3,7 +3,7 @@ import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { ApiGatewayTimeoutResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { HttpOkDesc, HttpTimeoutDesc } from '../app.constants';
+import { HttpOkDesc, HttpTimeoutDesc } from '../../app.constants';
 
 @ApiTags('Posts')
 @Controller('posts')

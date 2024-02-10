@@ -13,7 +13,6 @@ import { RouterModule } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
   public form: FormGroup;
-  public error: boolean = false;
   
   constructor(private fb: FormBuilder) {
     this.form = this.formSetup()
@@ -24,7 +23,6 @@ export class SignupComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.error = !this.error;
     this.form.reset();
   }
 

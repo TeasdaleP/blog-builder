@@ -2,14 +2,16 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
-import { PostsModule } from './posts/posts.module';
-import { Post } from './posts/entities/post.entity';
+import { PostsModule } from './app/posts/posts.module';
+import { Post } from './app/posts/entities/post.entity';
+import { AuthModule } from './app/auth/auth.module';
+import { Auth } from './app/auth/entities/auth.entity';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.development.env',
-      isGlobal: true
+      envFilePath: '.env',
+      isGlobal: true,
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -17,12 +19,13 @@ import { Post } from './posts/entities/post.entity';
       port: parseInt(process.env.DATABASE_PORT),
       password: process.env.DATABASE_PASSWORD,
       username: process.env.DATABASE_USERNAME,
-      entities: [Post],
+      entities: [Post, Auth],
       database: process.env.DATABASE_TABLE,
       synchronize: true,
       logging: true,
     }),
-    PostsModule
+    PostsModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
