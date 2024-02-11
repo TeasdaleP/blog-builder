@@ -23,8 +23,8 @@
                         </div>
                         <div class="navigation-column" *ngIf="loggedin">
                             <div class="navigation-profile" [routerLink]="['/profile']">
-                                Profile
-                                <img class="navigation-profile-image" [src]=photo alt="Profile Image"/>
+                                {{ name | titlecase }}
+                                <img class="navigation-avatar" src="assets/logos/profile.png" alt="Profile Image"/>
                             </div>
                         </div>
                     </div>

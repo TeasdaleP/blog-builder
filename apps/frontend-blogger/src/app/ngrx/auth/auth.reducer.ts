@@ -5,7 +5,10 @@ import * as AuthActions from './auth.actions';
 
 export const authReducer = createReducer(
     INITIAL_AUTH_STATE,
-    on(AuthActions.loginSuccess, (state, action) => ({ id: action.payload.id, token: action.payload.token }))
+    on(AuthActions.loginSuccess, (state, action) => ({ 
+        id: action.payload.id,
+        token: action.payload.token
+    }))
 )
 
 export function reducer(state: Auth | undefined, action: Action) {

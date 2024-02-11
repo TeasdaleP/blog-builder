@@ -15,7 +15,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: {
-        expiresIn: process.env.TIMEOUT
+        expiresIn: process.env.JWT_TIMEOUT
       }
     })
   ],

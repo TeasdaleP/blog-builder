@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { selectUserId } from '../../ngrx/auth';
+import { Observable, ReplaySubject, map, takeUntil } from 'rxjs';
+import { User } from '../../interface/user.interface';
 
 @Component({
   selector: 'blog-builder-navigation',
@@ -10,15 +14,33 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent implements OnInit {
-  @Input() loggedin: boolean = false;
-  @Input() photo: string | undefined; 
+  public loggedin: boolean = false;
+  public name!: string;
   public open: boolean = false;
+
+  public id$: Observable<string | undefined>;
+  // public user$: Observable<User | undefined>;
+
+  private destroyed$: ReplaySubject<void> = new ReplaySubject();
   
-  constructor(){}
+  constructor(private store: Store){
+    this.id$ = this.store.select(selectUserId).pipe(takeUntil(this.destroyed$));
+    // this.user$ = this.store.select(selectUser).pipe(takeUntil(this.destroyed$));
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.id$.subscribe((id) => {
+      this.loggedin = id ? true : false;
+      // this.store.dispatch(User.getUser({ id: id }));
+    });
+  }
 
-  toggleNavigation() {
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
+  public toggleNavigation() {
     this.open = !this.open;
   }
 }

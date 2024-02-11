@@ -10,11 +10,13 @@ import { User } from '../../interface/user.interface';
 import { Account } from '../../enums/account.enum';
 
 import * as AuthActions from '../../ngrx/auth';
+import { NavigationComponent } from '../../components/navigation/navigation.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'blog-builder-signup',
   standalone: true,
-  imports: [CommonModule, BackwardsComponent, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, NavigationComponent, FooterComponent, BackwardsComponent, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
 })

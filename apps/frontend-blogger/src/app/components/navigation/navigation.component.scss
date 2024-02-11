@@ -34,15 +34,16 @@
         font-size: 1em;
         line-height: 4em;
         color: #1F1F1F;
+    }
 
-        &-image {
-            border-radius: 2.8125em;
-            position: absolute;
-            height: 3.125em;
-            width: 3.125em;
-            top: 2.75em;
-            right: 5.625em;
-        }
+    &-avatar {
+        background-color: $blog-primary;
+        border-radius: 2.8125em;
+        position: absolute;
+        height: 3.125em;
+        width: 3.125em;
+        top: 2.75em;
+        right: 5.625em;
     }
 
     &-links {

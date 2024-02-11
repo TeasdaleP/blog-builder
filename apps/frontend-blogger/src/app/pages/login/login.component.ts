@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { BackwardsComponent } from '../../components/backwards/backwards.component';
+import { NavigationComponent } from '../../components/navigation/navigation.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Actions, ofType } from '@ngrx/effects';
 import { ReplaySubject, takeUntil } from 'rxjs';
@@ -12,7 +14,7 @@ import * as AuthActions from '../../ngrx/auth';
 @Component({
   selector: 'blog-builder-login',
   standalone: true,
-  imports: [CommonModule, BackwardsComponent, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, NavigationComponent, FooterComponent, BackwardsComponent, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
