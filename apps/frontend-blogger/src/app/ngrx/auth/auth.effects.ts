@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, exhaustMap, map, of } from "rxjs";
+import { catchError, exhaustMap, mergeMap, of } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 
 import * as AuthAction from './auth.actions';
-import { Auth } from "../../interface/auth.data";
+import * as UserAction from '../user/user.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -12,22 +12,13 @@ export class AuthEffects {
     login$ = createEffect(() => this.actions$.pipe(
         ofType(AuthAction.login),
         exhaustMap((action) => this.authService.login$(action.email, action.password).pipe(
-            map((result) => {
-                let payload: Auth = {
-                    token: result.response?.token,
-                    id: result.response?.id
-                }
-                return AuthAction.loginSuccess({ payload: payload })
+            mergeMap((response) => {
+                return [
+                    AuthAction.loginSuccess({ payload: response }),
+                    UserAction.getUser({ id: response.id })
+                ]
             }),
             catchError((error) => of(AuthAction.loginFailed(error)))
-        ))
-    ));
-
-    register$ = createEffect(() => this.actions$.pipe(
-        ofType(AuthAction.register),
-        exhaustMap((action) => this.authService.register$(action.payload).pipe(
-            map((payload) => AuthAction.registerSuccess({ payload: payload })),
-            catchError((error) => of(AuthAction.registerFailed(error)))
         ))
     ));
 

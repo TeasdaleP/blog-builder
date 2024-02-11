@@ -5,7 +5,8 @@ import { ConfigModule } from '@nestjs/config';
 import { PostsModule } from './app/posts/posts.module';
 import { Post } from './app/posts/entities/post.entity';
 import { AuthModule } from './app/auth/auth.module';
-import { Auth } from './app/auth/entities/auth.entity';
+import { User } from './app/users/entities/user.entities';
+import { UsersModule } from './app/users/users.module';
 
 @Module({
   imports: [
@@ -19,13 +20,14 @@ import { Auth } from './app/auth/entities/auth.entity';
       port: parseInt(process.env.DATABASE_PORT),
       password: process.env.DATABASE_PASSWORD,
       username: process.env.DATABASE_USERNAME,
-      entities: [Post, Auth],
+      entities: [Post, User],
       database: process.env.DATABASE_TABLE,
       synchronize: true,
       logging: true,
     }),
     PostsModule,
-    AuthModule,
+    UsersModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],

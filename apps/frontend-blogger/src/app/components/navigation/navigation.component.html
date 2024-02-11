@@ -23,7 +23,7 @@
                         </div>
                         <div class="navigation-column" *ngIf="loggedin">
                             <div class="navigation-profile" [routerLink]="['/profile']">
-                                {{ name | titlecase }}
+                                {{ (user$ | async)?.firstname | titlecase }}
                                 <img class="navigation-avatar" src="assets/logos/profile.png" alt="Profile Image"/>
                             </div>
                         </div>

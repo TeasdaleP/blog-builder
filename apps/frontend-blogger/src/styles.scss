@@ -237,6 +237,26 @@ ol {
         width: 100%;
     }
 
+    &-select {
+        border: 1.5px solid $blog-primary;
+        background-color: $blog-hero;
+        border-radius: 12px;
+        color: $blog-secondary;
+        font-size: 18px;
+        height: 100%;
+        outline: 0;
+        padding: 4px 20px 0;
+        width: 100%;
+
+        &-label {
+            width: 100%;
+            text-align: center;
+            color: $blog-secondary;
+            font-size: 12px;
+            font-weight: 700;
+        }
+    }
+
     &-spacer {
         background-color: $blog-body;
         border-radius: 10px;

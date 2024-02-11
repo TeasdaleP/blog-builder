@@ -5,13 +5,20 @@ export interface User {
     lastname: string;
     email: string;
     password?: string;
-    account: Account;
+    account?: Account;
 }
 
-export const MOCK_USER : User = {
+export const MOCK_USER: User = {
     firstname: '',
     lastname: '',
     email: '',
     password: '',
+    account: Account.User
+}
+
+export const INITIAL_USER_STATE: User = {
+    firstname: '',
+    lastname: '',
+    email: '',
     account: Account.User
 }

@@ -1,4 +1,58 @@
 <blog-builder-navigation></blog-builder-navigation>
-<blog-builder-backwards [link]=" '/link' " [text]=" 'return to homepage' "></blog-builder-backwards>
-<p>profile works!</p>
+<div class="profile">
+    <div class="profile-higher"></div>
+    <div class="profile-lower"></div>
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-row">
+                <div class="profile-column-large">
+                    <div class="profile-card-inner">
+                        <div class="profile-content-heading">{{ (user$ | async)?.firstname | titlecase }}  {{ (user$ | async)?.lastname | titlecase }}</div>
+                        <div class="profile-subheading"><span>Email:</span> {{ (user$ | async)?.email }}</div>
+                        <div class="profile-subheading"><span>Account:</span> {{ (user$ | async)?.account | titlecase }}</div>
+                    </div>
+                </div>
+                <div class="profile-column-small">
+                    <div class="profile-card-inner">
+                        <div class="form-group">
+                            <label class="form-select-label" for="account">Change Account Type</label>
+                            <select class="form-select" id="account" #account (change)="changeAccount(account.value)">
+                                <option value="" selected disabled hidden>Select option</option>
+                                <option value="Account.User" *ngIf="(user$ | async)?.account !== Account.User">User</option>
+                                <option value="Account.Blogger" *ngIf="(user$ | async)?.account !== Account.Blogger">Blogger</option>
+                                <option value="Account.Admin" *ngIf="(user$ | async)?.account !== Account.Admin">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="profile-content">
+    <div class="profile-content-card" *ngIf="(user$ | async)?.account === Account.User">
+        <div class="profile-content-inner">
+            <div class="profile-content-heading">Your Comments</div>
+            TODO : A list of comments specific to the user will go here.
+        </div>
+    </div>
+    <div class="profile-content-card" *ngIf="(user$ | async)?.account !== Account.User">
+        <div class="profile-content-inner">
+            <div class="profile-content-heading">New Post</div>
+            TODO : A form to post a new blog post will go here
+        </div>
+    </div>
+    <div class="profile-content-card" *ngIf="(user$ | async)?.account !== Account.User">
+        <div class="profile-content-inner">
+            <div class="profile-content-heading">Posts</div>
+            TODO : A list of posts with the ability to delete a post will go here
+        </div>
+    </div>
+    <div class="profile-content-card" *ngIf="(user$ | async)?.account === Account.Admin">
+        <div class="profile-content-inner">
+            <div class="profile-content-heading">Users</div>
+            TODO : A list of users with their account type and ability to delete a user will go here.
+        </div>
+    </div>
+</div>
 <blog-builder-footer></blog-builder-footer>

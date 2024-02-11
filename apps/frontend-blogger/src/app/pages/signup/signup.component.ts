@@ -8,10 +8,10 @@ import { Actions, ofType } from '@ngrx/effects';
 import { ReplaySubject, takeUntil } from 'rxjs';
 import { User } from '../../interface/user.interface';
 import { Account } from '../../enums/account.enum';
-
-import * as AuthActions from '../../ngrx/auth';
 import { NavigationComponent } from '../../components/navigation/navigation.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+
+import * as UserActions from '../../ngrx/user';
 
 @Component({
   selector: 'blog-builder-signup',
@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.actions.pipe(ofType(AuthActions.registerSuccess), takeUntil(this.destroyed$)).subscribe(() => {
+    this.actions.pipe(ofType(UserActions.registerSuccess), takeUntil(this.destroyed$)).subscribe(() => {
       this.router.navigate(['login']);
     });
   }
@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
   public onSubmit(): void {
     if (this.form?.valid) {
       const newUser: User = this.userPayload();
-      this.store.dispatch(AuthActions.register({ payload: newUser }));
+      this.store.dispatch(UserActions.register({ payload: newUser }));
     }
     this.form.reset();
   }
