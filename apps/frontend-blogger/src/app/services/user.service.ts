@@ -18,4 +18,8 @@ export class UserService {
     getUser$(id: string | undefined): Observable<User> {
         return this.http.get<User>(`http://localhost:3000/users/${id}`);
     }
+
+    updateUser$(id: string | undefined, payload: User): Observable<User> {
+        return this.http.patch<User>(`http://localhost:3000/users/${id}`, payload);
+    }
 }

@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, exhaustMap, map, of } from "rxjs";
+import { catchError, exhaustMap, map, of, switchMap, withLatestFrom } from "rxjs";
 import { UserService } from "../../services/user.service";
+import { Store } from "@ngrx/store";
+import { selectUser } from "./user.selectors";
+import { User } from "../../interface/user.interface";
 
 import * as UserAction from './user.actions';
 
@@ -24,5 +27,23 @@ export class UserEffects {
         ))
     ));
 
-    constructor(private userService: UserService, private actions$: Actions) {}
+    updateUser$ = createEffect(() => this.actions$.pipe(
+         ofType(UserAction.changeAccount),
+         withLatestFrom(this.store.select(selectUser)),
+         switchMap(([action, state]) => {
+            const payload: User = {
+                id: state.id,
+                firstname: state.firstname,
+                lastname: state.lastname,
+                email: state.email,
+                account: action.account
+            }
+            return this.userService.updateUser$(state.id, payload).pipe(
+                map((payload) => UserAction.changeAccountSuccess({ payload: payload })),
+                catchError((error) => of(UserAction.changeAccountFailed(error)))
+            )
+         })
+    ));
+
+    constructor(private userService: UserService, private actions$: Actions, private store: Store) {}
 }

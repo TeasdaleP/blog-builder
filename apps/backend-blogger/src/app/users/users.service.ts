@@ -42,7 +42,6 @@ export class UsersService {
     user.firstname = updateUserDto.firstname,
     user.lastname = updateUserDto.lastname,
     user.email = updateUserDto.password,
-    user.password  = bcrypt.hashSync(updateUserDto.password, 10),
     user.account = updateUserDto.account
 
     return this.userRepository.save(user);

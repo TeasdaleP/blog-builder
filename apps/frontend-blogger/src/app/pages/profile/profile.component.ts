@@ -5,7 +5,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { NavigationComponent } from '../../components/navigation/navigation.component';
 import { Observable, ReplaySubject, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectUser } from '../../ngrx/user';
+import { changeAccount, selectUser } from '../../ngrx/user';
 import { User } from '../../interface/user.interface';
 import { Account } from '../../enums/account.enum';
 
@@ -36,6 +36,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   public changeAccount(value: string): void {
-    console.log(value);
+    this.store.dispatch(changeAccount({ account: value as Account }));
   }
 }

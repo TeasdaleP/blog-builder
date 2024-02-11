@@ -18,9 +18,9 @@
                             <label class="form-select-label" for="account">Change Account Type</label>
                             <select class="form-select" id="account" #account (change)="changeAccount(account.value)">
                                 <option value="" selected disabled hidden>Select option</option>
-                                <option value="Account.User" *ngIf="(user$ | async)?.account !== Account.User">User</option>
-                                <option value="Account.Blogger" *ngIf="(user$ | async)?.account !== Account.Blogger">Blogger</option>
-                                <option value="Account.Admin" *ngIf="(user$ | async)?.account !== Account.Admin">Admin</option>
+                                <option value="USER" *ngIf="(user$ | async)?.account !== Account.User">User</option>
+                                <option value="BLOGGER" *ngIf="(user$ | async)?.account !== Account.Blogger">Blogger</option>
+                                <option value="ADMIN" *ngIf="(user$ | async)?.account !== Account.Admin">Admin</option>
                             </select>
                         </div>
                     </div>
