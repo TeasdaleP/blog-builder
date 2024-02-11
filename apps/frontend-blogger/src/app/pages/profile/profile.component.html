@@ -72,12 +72,34 @@
             </ng-template>
         </div>
     </div>
-    <div class="profile-content-card" *ngIf="(user$ | async)?.account === Account.Admin">
+    <div class="profile-content-card">
         <div class="profile-content-inner">
             <div class="profile-content-heading">Users</div>
-            <div class="alert">
-                TODO: A list of users with their account type and ability to delete a user will go here.
-            </div>
+            <table class="profile-table" *ngIf="(allUsers$ | async)?.length else NoUsers">
+                <tr class="profile-table-heading">
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Account</th>
+                    <th>Delete</th>
+                </tr>
+                @for (user of allUsers$ | async; track user?.id; let index = $index) {
+                    <tr class="profile-table-row">
+                        <td>{{ user?.firstname | titlecase }}</td>
+                        <td>{{ user?.lastname | titlecase }}</td>
+                        <td>{{ user?.email }}</td>
+                        <td>{{ user?.account | titlecase }}</td>
+                        <td class="profile-table-delete" (click)="deleteUser(user?.id)" *ngIf="(user$ | async)?.id !== user?.id">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </td>
+                    </tr>
+                }
+            </table>
+            <ng-template #NoUsers>
+                <div class="alert">
+                    Sorry. There are currently no users to display.
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

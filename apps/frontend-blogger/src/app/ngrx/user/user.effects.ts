@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, exhaustMap, map, of, switchMap, withLatestFrom } from "rxjs";
+import { catchError, exhaustMap, map, mergeMap, of, switchMap, withLatestFrom } from "rxjs";
 import { UserService } from "../../services/user.service";
 import { Store } from "@ngrx/store";
 import { selectUser } from "./user.selectors";
@@ -27,6 +27,14 @@ export class UserEffects {
         ))
     ));
 
+    getAllUser$ = createEffect(() => this.actions$.pipe(
+        ofType(UserAction.getAllUsers),
+        exhaustMap(() => this.userService.getAllUser$().pipe(
+            map((payload) => UserAction.getAllUsersSuccess({ payload: payload })),
+            catchError((error) => of(UserAction.getAllUserFailed(error)))
+        ))
+    ));
+
     updateUser$ = createEffect(() => this.actions$.pipe(
          ofType(UserAction.changeAccount),
          withLatestFrom(this.store.select(selectUser)),
@@ -43,6 +51,19 @@ export class UserEffects {
                 catchError((error) => of(UserAction.changeAccountFailed(error)))
             )
          })
+    ));
+
+    deleteUser$ = createEffect(() => this.actions$.pipe(
+        ofType(UserAction.deleteUser),
+        exhaustMap((action) => this.userService.deleteUsers$(action.id).pipe(
+            mergeMap((response) => {
+                return [
+                    UserAction.deleteUserSuccess({ payload: response }),
+                    UserAction.getAllUsers()
+                ]
+            }),
+            catchError((error) => of(UserAction.deleteUserFailed(error)))
+        ))
     ));
 
     constructor(private userService: UserService, private actions$: Actions, private store: Store) {}

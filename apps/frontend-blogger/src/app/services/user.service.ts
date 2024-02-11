@@ -18,7 +18,15 @@ export class UserService {
         return this.http.get<User>(`http://localhost:3000/users/${id}`);
     }
 
+    getAllUser$(): Observable<User[]> {
+        return this.http.get<User[]>(`http://localhost:3000/users`);
+    }
+
     updateUser$(id: string | undefined, payload: User): Observable<User> {
         return this.http.patch<User>(`http://localhost:3000/users/${id}`, payload);
+    }
+
+    deleteUsers$(id: string): Observable<any> {
+        return this.http.delete<any>(`http://localhost:3000/users/${id}`)
     }
 }
