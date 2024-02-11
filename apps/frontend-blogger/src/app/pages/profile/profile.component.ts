@@ -8,6 +8,8 @@ import { Store } from '@ngrx/store';
 import { changeAccount, selectUser } from '../../ngrx/user';
 import { User } from '../../interface/user.interface';
 import { Account } from '../../enums/account.enum';
+import { deletePost, selectAllPosts } from '../../ngrx/post';
+import { Post } from '../../interface/post.data';
 
 @Component({
   selector: 'blog-builder-profile',
@@ -18,12 +20,14 @@ import { Account } from '../../enums/account.enum';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   public user$: Observable<User | undefined>;
+  public posts$: Observable<Post[]>;
   public Account = Account; 
 
   private destroyed$: ReplaySubject<void> = new ReplaySubject();
   
   constructor(private store: Store) {
     this.user$ = this.store.select(selectUser).pipe(takeUntil(this.destroyed$));
+    this.posts$ = this.store.select(selectAllPosts).pipe(takeUntil(this.destroyed$));
   }
 
   ngOnInit(): void {
@@ -37,5 +41,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public changeAccount(value: string): void {
     this.store.dispatch(changeAccount({ account: value as Account }));
+  }
+
+  public deletePost(id: string | undefined): void {
+    if (typeof id === 'string') {
+      this.store.dispatch(deletePost({ id: id }));
+    }
   }
 }

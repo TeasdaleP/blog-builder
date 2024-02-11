@@ -33,25 +33,51 @@
     <div class="profile-content-card" *ngIf="(user$ | async)?.account === Account.User">
         <div class="profile-content-inner">
             <div class="profile-content-heading">Your Comments</div>
-            TODO : A list of comments specific to the user will go here.
+            <div class="alert">
+                TODO: A list of comments specific to the user will go here.
+            </div>
         </div>
     </div>
     <div class="profile-content-card" *ngIf="(user$ | async)?.account !== Account.User">
         <div class="profile-content-inner">
             <div class="profile-content-heading">New Post</div>
-            TODO : A form to post a new blog post will go here
+            <div class="alert">
+                TODO: A form for adding new blog post will go here.
+            </div>
         </div>
     </div>
     <div class="profile-content-card" *ngIf="(user$ | async)?.account !== Account.User">
         <div class="profile-content-inner">
             <div class="profile-content-heading">Posts</div>
-            TODO : A list of posts with the ability to delete a post will go here
+            <table class="profile-table" *ngIf="(posts$ | async)?.length else NoPosts">
+                <tr class="profile-table-heading">
+                    <th>Date</th>
+                    <th>Author</th>
+                    <th>Title</th>
+                    <th>Delete</th>
+                </tr>
+                @for (post of posts$ | async; track post?.id; let index = $index) {
+                    <tr class="profile-table-row">
+                        <td>{{ post?.date | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{ post?.author }}</td>
+                        <td>{{ post?.title }}</td>
+                        <td class="profile-table-delete" (click)="deletePost(post?.id)"><i class="fa fa-trash" aria-hidden="true"></i></td>
+                    </tr>
+                }
+            </table>
+            <ng-template #NoPosts>
+                <div class="alert">
+                    Sorry. There are currently no posts to display.
+                </div>
+            </ng-template>
         </div>
     </div>
     <div class="profile-content-card" *ngIf="(user$ | async)?.account === Account.Admin">
         <div class="profile-content-inner">
             <div class="profile-content-heading">Users</div>
-            TODO : A list of users with their account type and ability to delete a user will go here.
+            <div class="alert">
+                TODO: A list of users with their account type and ability to delete a user will go here.
+            </div>
         </div>
     </div>
 </div>

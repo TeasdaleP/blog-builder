@@ -9,6 +9,7 @@ import { authReducer } from './ngrx/auth/auth.reducer';
 import { AuthEffects } from './ngrx/auth/auth.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { UserEffects, userReducer } from './ngrx/user';
+import { PostEffects, postReducer } from './ngrx/post';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,13 +18,13 @@ export const appConfig: ApplicationConfig = {
     provideStore({ 
       auth: authReducer,
       user: userReducer,
-      // posts: {},
+      posts: postReducer,
     }),
     provideStoreDevtools({
       maxAge: 25,
       autoPause: true,
       trace: false
     }),
-    provideEffects([AuthEffects, UserEffects]),
+    provideEffects([AuthEffects, UserEffects, PostEffects]),
   ],
 };

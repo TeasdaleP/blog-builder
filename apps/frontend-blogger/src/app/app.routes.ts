@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { authGuard } from './guards/auth/auth.guard';
+import { postsGuard } from './guards/posts/posts.guard';
 
 export const appRoutes: Route[] = [
     {
@@ -24,7 +25,8 @@ export const appRoutes: Route[] = [
     },
     {
         path: 'details/:id',
-        loadComponent: () => import('./pages/details/details.component').then((x) => x.DetailsComponent)
+        loadComponent: () => import('./pages/details/details.component').then((x) => x.DetailsComponent),
+        canActivate: [postsGuard]
     },
     {
         path: '**', redirectTo: 'list', pathMatch: 'full'

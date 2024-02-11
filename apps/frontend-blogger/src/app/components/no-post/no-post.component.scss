@@ -1,0 +1,31 @@
+@import '../../../styles.scss';
+
+.nopost {
+    margin-bottom: 30px;
+    width: 100%;
+
+   
+    &-right {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    &-content {
+        background-color: white;
+        height: 100%; 
+    }
+    
+    &-spacing {
+        padding: 50px;
+    }
+
+    &-border {
+        border-radius: 16px 0px 16px 16px;
+        border: 1.5px solid $blog-footer;
+    }
+
+    &-title {
+        color: $blog-secondary;
+        font-weight: light;
+    }
+}

@@ -116,4 +116,32 @@ span {
             padding: 32px 44px 32px 44px;
         }
     }
+
+    &-table {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        &-heading {
+            font-weight: 700;
+        }
+    
+        &-row {
+            border-bottom: 0.5px solid $blog-primary;
+            font-weight: light;
+            height: 36px;
+        }
+
+        &-delete {
+            cursor: pointer;
+            color: $blog-blue;
+        }
+    }
+}
+
+.profile-table-delete:hover {
+    cursor: pointer;
+    color: $blog-red;
 }

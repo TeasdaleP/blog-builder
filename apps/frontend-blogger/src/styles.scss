@@ -305,3 +305,14 @@ ol {
 .form-input:focus ~ .form-label {
     color: $blog-secondary;
 }
+
+.alert {
+    width: 100%;
+    background-color: $blog-primary;
+    opacity:0.7;
+    border-radius: 16px 0px 16px 16px;
+    border: 1.5px solid $blog-dark;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

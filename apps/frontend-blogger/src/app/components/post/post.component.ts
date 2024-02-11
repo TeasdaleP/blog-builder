@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
   styleUrl: './post.component.scss',
 })
 export class PostComponent implements OnInit {
-  @Input() public id!: string;
-  @Input() public title!: string;
-  @Input() public description!: string;
-  @Input() public image!: string | undefined;
+  @Input() public id: string | undefined;
+  @Input() public title: string | undefined;
+  @Input() public description: string | undefined;
+  @Input() public image: string | undefined;
 
   constructor(private route: Router) {}
 

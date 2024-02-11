@@ -1,24 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroComponent } from '../../components/hero/hero.component';
 import { PostComponent } from '../../components/post/post.component';
 import { NavigationComponent } from '../../components/navigation/navigation.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { NoPostComponent } from '../../components/no-post/no-post.component';
+import { Observable, ReplaySubject, takeUntil } from 'rxjs';
+import { Post } from '../../interface/post.data';
+import { Store } from '@ngrx/store';
+import { getAllPosts, selectAllPosts } from '../../ngrx/post';
 
 @Component({
   selector: 'blog-builder-list',
   standalone: true,
-  imports: [CommonModule, NavigationComponent, FooterComponent, HeroComponent, PostComponent],
+  imports: [CommonModule, NavigationComponent, FooterComponent, HeroComponent, PostComponent, NoPostComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })
-export class ListComponent implements OnInit {
-  public title!: string;
-  public subtitle!: string;
+export class ListComponent implements OnInit, OnDestroy {
+  public posts$: Observable<Post[]>;
 
-  constructor() {}
+  private destroyed$: ReplaySubject<void> = new ReplaySubject();
+
+  constructor(private store: Store) {
+    this.posts$ = this.store.select(selectAllPosts).pipe(takeUntil(this.destroyed$));
+  }
 
   ngOnInit() {
-    this.title = 'welcome to the blog!';
+    this.store.dispatch(getAllPosts());
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 }

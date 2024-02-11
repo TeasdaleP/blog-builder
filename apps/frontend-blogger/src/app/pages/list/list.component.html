@@ -1,5 +1,5 @@
 <blog-builder-navigation></blog-builder-navigation>
-<blog-builder-hero [title]="title"></blog-builder-hero>
+<blog-builder-hero [title]=" 'welcome to our blog!' "></blog-builder-hero>
 <div class="list">
     <div class="list-inner">
         <div class="list-row">
@@ -7,14 +7,12 @@
             <div class="list-subheading">Dive into our latest blog posts and tell us what you think...</div>
         </div>
         <div class="list-row">
-            <!-- THIS NEEDS TO BE REPLACED WITH ACTUAL DATA -->
-            <blog-builder-post
-                [id]=" '1234-ABCD-5678-EFGH' "
-                [image]="undefined"
-                [title]=" 'Title of the Post?' "
-                [description]=" 'Ultrices euismod. Mauris tellus integer fringilla luctus consectetuer accumsan sapien consequat natoque amet lobortis habitant hymenaeos suscipit urna, mollis Commodo dis dui tempor phasellus cras nonummy, lacinia euismod blandit libero. Convallis. Ultrices hac fames.' "
-            ></blog-builder-post>
-            <!-- THIS NEEDS TO BE REPLACED WITH ACTUAL DATA -->
+            @for (post of posts$ | async; track post?.id; let index = $index) {
+                <blog-builder-post [id]="post?.id" [image]="undefined" [title]="post?.title" [description]="post?.description"></blog-builder-post>
+            }
+            @empty {
+                <blog-builder-no-post></blog-builder-no-post>
+            }
         </div>
     </div>
 </div>
