@@ -15,7 +15,8 @@ export class AuthEffects {
             mergeMap((response) => {
                 return [
                     AuthAction.loginSuccess({ payload: response }),
-                    UserAction.getUser({ id: response.id })
+                    UserAction.getUser({ id: response.id }),
+                    UserAction.getAllUsers()
                 ]
             }),
             catchError((error) => of(AuthAction.loginFailed(error)))

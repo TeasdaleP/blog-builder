@@ -48,7 +48,7 @@ export class SignupComponent implements OnInit {
       firstname: this.form.get('firstname')?.value,
       lastname: this.form.get('lastname')?.value,
       email: this.form.get('email')?.value,
-      password: this.form.get('firstname')?.value,
+      password: this.form.get('password')?.value,
       account: Account.User,
     }
   }

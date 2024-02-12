@@ -22,6 +22,7 @@ export class UserEffects {
     getUser$ = createEffect(() => this.actions$.pipe(
         ofType(UserAction.getUser),
         exhaustMap((action) => this.userService.getUser$(action.id).pipe(
+            // here added a check for account being 'Admin' to retreive all users
             map((payload) => UserAction.getUserSuccess({ payload: payload })),
             catchError((error) => of(UserAction.getUserFailed(error)))
         ))

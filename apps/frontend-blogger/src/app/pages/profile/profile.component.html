@@ -1,4 +1,4 @@
-<blog-builder-navigation></blog-builder-navigation>
+em<blog-builder-navigation></blog-builder-navigation>
 <div class="profile">
     <div class="profile-higher"></div>
     <div class="profile-lower"></div>
@@ -72,7 +72,7 @@
             </ng-template>
         </div>
     </div>
-    <div class="profile-content-card">
+    <div class="profile-content-card" *ngIf="(user$ | async)?.account === Account.Admin">
         <div class="profile-content-inner">
             <div class="profile-content-heading">Users</div>
             <table class="profile-table" *ngIf="(allUsers$ | async)?.length else NoUsers">

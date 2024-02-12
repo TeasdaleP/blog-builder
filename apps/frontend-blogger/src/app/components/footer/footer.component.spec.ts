@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FooterComponent } from './footer.component';
+import { By } from '@angular/platform-browser';
 
-describe('FooterComponent', () => {
+describe('Footer Component', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
 
@@ -17,5 +18,15 @@ describe('FooterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should include the footer content', () => {
+    let sentence = fixture.debugElement.query(By.css('.footer-sentence')).nativeElement;
+    expect(sentence.textContent).toContain('Developed by');
+  });
+
+  it('should have my name highlighted', () => {
+    let sentence = fixture.debugElement.query(By.css('span')).nativeElement;
+    expect(sentence.textContent).toContain('Phil Teasdale');
   });
 });

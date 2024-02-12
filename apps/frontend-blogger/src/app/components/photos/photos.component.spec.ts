@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PhotosComponent } from './photos.component';
 
+/**
+ * 
+ *  This component is still work in progres so more testing 
+ *  is required when the component is finalised. 
+ * 
+ */
+
 describe('PhotosComponent', () => {
   let component: PhotosComponent;
   let fixture: ComponentFixture<PhotosComponent>;

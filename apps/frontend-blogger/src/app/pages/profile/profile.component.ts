@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-      this.store.dispatch(getAllUsers());
+  
   }
 
   ngOnDestroy(): void {
