@@ -1,0 +1,34 @@
+@import '../../../styles.scss';
+
+.addpost {
+    &-right {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+}
+
+editor {
+    border: 1.5px solid $blog-primary;
+    background-color: $blog-hero;
+    border-radius: 12px;
+}
+
+.tox {
+    &-tinymce {
+        border: 1.5px solid $blog-primary;
+    }
+}
+
+::ng-deep .tox-tinymce {
+    border: none !important;
+    outline: none;
+}
+
+::ng-deep .tox-editor-header {
+    box-shadow: none;
+    padding: 0;
+}
+
+::ng-deep .tox-toolbar__primary {
+    background-color: none;
+}

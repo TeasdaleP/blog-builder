@@ -27,6 +27,11 @@ nx serve frontend-blogger
 nx test frontend-blogger --code-coverage --watch
 ```
 
+```
+nx test frontend-blogger --test-file file-name.component.spec.ts
+```
+
+
 ### Backend Development 
 
 The development of the backend is completed using the Nest.JS CLI commands. Once the application is served locally, navigate to the http://localhost:3000/ and the Swagger Documentation will guide you to the correct endpoints. Some useful commands include:

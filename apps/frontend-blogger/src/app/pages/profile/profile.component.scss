@@ -8,6 +8,18 @@ span {
     position: relative;
     height: 12em;
 
+    &-notification {
+        width: 100%;
+        background-color: $blog-primary;
+        color: $blog-secondary;
+        border-radius: 16px 16px 16px 16px;
+        padding: 8px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
     &-higher {
         height: 7em;
         background-color: $blog-hero;

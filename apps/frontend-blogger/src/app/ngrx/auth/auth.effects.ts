@@ -5,6 +5,7 @@ import { AuthService } from "../../services/auth.service";
 
 import * as AuthAction from './auth.actions';
 import * as UserAction from '../user/user.actions';
+import * as PostAction from '../post/post.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -16,7 +17,8 @@ export class AuthEffects {
                 return [
                     AuthAction.loginSuccess({ payload: response }),
                     UserAction.getUser({ id: response.id }),
-                    UserAction.getAllUsers()
+                    UserAction.getAllUsers(),
+                    PostAction.getAllPosts()
                 ]
             }),
             catchError((error) => of(AuthAction.loginFailed(error)))

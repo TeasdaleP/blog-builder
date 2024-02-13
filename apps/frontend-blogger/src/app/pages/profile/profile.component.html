@@ -38,12 +38,14 @@
             </div>
         </div>
     </div>
+    <!-- <div class="profile-content-card" *ngIf="(user$ | async)?.account !== Account.User"> -->
     <div class="profile-content-card" *ngIf="(user$ | async)?.account !== Account.User">
         <div class="profile-content-inner">
             <div class="profile-content-heading">New Post</div>
-            <div class="alert">
-                TODO: A form for adding new blog post will go here.
+            <div class="profile-notification" *ngIf="postSuccess">
+                Result! Your Post has been submitted successfully...
             </div>
+            <blog-builder-add-post [firstname]="(user$ | async)?.firstname" [lastname]="(user$ | async)?.lastname" (newPost)="addPost($event)"></blog-builder-add-post>
         </div>
     </div>
     <div class="profile-content-card" *ngIf="(user$ | async)?.account !== Account.User">

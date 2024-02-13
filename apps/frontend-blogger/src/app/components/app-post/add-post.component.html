@@ -1,0 +1,20 @@
+<div class="addpost">
+    <div class="addpost-inner">
+        <form [formGroup]="form">
+            <div class="form-group form-group-full form-spacing">
+                <input class="form-input" id="title" type="text" formControlName="title" placeholder=" " />
+                <div class="form-spacer form-short"></div>
+                <label class="form-label" for="title">Blog Post Title</label>
+                <ng-container *ngIf="form.controls['title'].touched && form.controls['title'].invalid">
+                    <div class="form-error" *ngIf="form.controls['title'].errors && form.controls['title'].errors['required']">The Title is required</div>
+                </ng-container>
+            </div>
+            <div class="form-spacing">
+                <editor [apiKey]="apikey" [init]="config" formControlName="description"></editor>
+            </div>
+            <div class="addpost-right">
+                <button class="button button-primary button-small" (click)="onSubmit()">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

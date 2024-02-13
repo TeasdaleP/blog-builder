@@ -4,6 +4,7 @@ import { exhaustMap, map, catchError, of, mergeMap } from "rxjs";
 import { PostService } from "../../services/post.service";
 
 import * as PostAction from './post.actions';
+import { Post } from "../../interface/post.data";
 
 @Injectable()
 export class PostEffects {
@@ -18,15 +19,21 @@ export class PostEffects {
 
     addPost$ = createEffect(() => this.actions$.pipe(
         ofType(PostAction.addPost),
-        exhaustMap(() => this.postService.getAllPosts$().pipe(
-            mergeMap((payload) => {
-                return [
-                    PostAction.addPostSuccess({ payload: payload }),
-                    PostAction.getAllPosts()
-                ]
-            }),
-            catchError((error) => of(PostAction.addPostFailed(error)))
-        ))
+        exhaustMap((action) => {
+            let payload: Post = {
+                ...action.payload,
+                date: new Date
+            }
+            return this.postService.addPost$(payload).pipe(
+                mergeMap((payload) => {
+                    return [
+                        PostAction.addPostSuccess({ payload: payload }),
+                        PostAction.getAllPosts()
+                    ]
+                }),
+                catchError((error) => of(PostAction.addPostFailed(error)))
+            )
+        })
     ));
 
     deletePost$ = createEffect(() => this.actions$.pipe(

@@ -6,7 +6,7 @@
     <div class="post-content post-border">
         <div class="post-spacing">
             <h2 class="post-title">{{ title | titlecase }}</h2>
-            <p>{{ description | slice:0:250 }}...</p>
+            <div [innerHtml]="description | slice:0:250"></div>
             <div class="post-right">
                 <button class="button button-primary button-small" (click)="readMore()">Read More</button>
             </div>

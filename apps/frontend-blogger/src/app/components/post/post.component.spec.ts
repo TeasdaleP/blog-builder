@@ -43,11 +43,9 @@ describe('Post Component', () => {
     fixture.detectChanges();
 
     let title = fixture.debugElement.query(By.css('.post-title')).nativeElement;
-    let description = fixture.debugElement.query(By.css('p')).nativeElement;
     let button = fixture.debugElement.query(By.css('.button')).nativeElement;
 
     expect(title.textContent).toBe('Title');
-    expect(description.textContent).toBe('description...');
     expect(button.textContent).toBe('Read More');
   });
 

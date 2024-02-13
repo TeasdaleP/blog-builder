@@ -1,7 +1,7 @@
 export interface Post {
     id?: string;
     title: string;
-    date: Date;
+    date?: Date;
     author: string;
     description: string;
     images?: Array<string>;

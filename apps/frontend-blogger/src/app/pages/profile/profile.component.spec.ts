@@ -7,8 +7,9 @@ import { Observable, of } from 'rxjs';
 import { User } from '../../interface/user.interface';
 import { Account } from '../../enums/account.enum';
 import { By } from '@angular/platform-browser';
+import { Post } from '../../interface/post.data';
 
-describe('ProfileComponent', () => {
+describe('Profile Component', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   let store: MockStore;
@@ -92,6 +93,20 @@ describe('ProfileComponent', () => {
       headings.forEach((heading) => {
         expect(heading.nativeElement.textContent).not.toBe('Posts');
       });
+    });
+
+    it('should be able to add a new post', () => {
+      const dispatch = jest.spyOn(store, 'dispatch');
+
+      let post: Post = {
+        title: 'the title',
+        author: `${user.firstname} ${user.lastname}`,
+        description: 'the description',
+      }
+
+      component.addPost(post);
+      fixture.detectChanges();
+      expect(dispatch).toHaveBeenCalledWith({ payload: post, type: "[Posts] Add"});
     });
     
     it('should be able to delete a post', () => {
