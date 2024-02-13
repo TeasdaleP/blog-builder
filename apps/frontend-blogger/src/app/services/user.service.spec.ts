@@ -4,6 +4,7 @@ import { TestBed } from "@angular/core/testing";
 import { UserService } from "./user.service";
 import { User } from "../interface/user.interface";
 import { Account } from "../enums/account.enum";
+import { environment } from "../../environments/environment";
 
 describe('User Service', () => {
     let service: UserService;
@@ -11,8 +12,6 @@ describe('User Service', () => {
 
     let httpMock: HttpTestingController;
     let httpClient: HttpClient;
-
-    let url = 'http://localhost:3000/users'; 
 
     let id = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
 
@@ -41,28 +40,28 @@ describe('User Service', () => {
     it('should be able to post to the register$ endpoint', () => {
         service.register$(mockUser).subscribe((any) => result = any);
     
-        const req = httpMock.expectOne(url);
+        const req = httpMock.expectOne(`${environment.backend}/users`);
         expect(req.request.method).toEqual('POST');
         expect(req.request.body).toEqual(mockUser);
-        expect(req.request.url).toEqual(url);
+        expect(req.request.url).toEqual(`${environment.backend}/users`);
         httpMock.verify();
     });
 
     it('should be able to get users from the getUser$ endpoint', () => {
         service.getUser$(id).subscribe((any) => result = any);
 
-        const req = httpMock.expectOne(`${url}/${id}`);
+        const req = httpMock.expectOne(`${environment.backend}/users/${id}`);
         expect(req.request.method).toEqual('GET');
-        expect(req.request.url).toEqual(`${url}/${id}`);
+        expect(req.request.url).toEqual(`${environment.backend}/users/${id}`);
         httpMock.verify();
     });
 
     it('should be able to get all users the getAllUser$ endpoint', () => {
         service.getAllUser$().subscribe((any) => result = any);
 
-        const req = httpMock.expectOne(url);
+        const req = httpMock.expectOne(`${environment.backend}/users`);
         expect(req.request.method).toEqual('GET');
-        expect(req.request.url).toEqual(url);
+        expect(req.request.url).toEqual(`${environment.backend}/users`);
         httpMock.verify();
     });
 
@@ -76,19 +75,19 @@ describe('User Service', () => {
 
         service.updateUser$(id, updatedUser).subscribe((any) => result = any);
 
-        const req = httpMock.expectOne(`${url}/${id}`);
+        const req = httpMock.expectOne(`${environment.backend}/users/${id}`);
         expect(req.request.method).toEqual('PATCH');
         expect(req.request.body).toEqual(updatedUser);
-        expect(req.request.url).toEqual(`${url}/${id}`);
+        expect(req.request.url).toEqual(`${environment.backend}/users/${id}`);
         httpMock.verify();
     });
 
     it('should be able to delete the users with the deleteUsers$ endpoint', () => {
         service.deleteUsers$(id).subscribe((any) => result = any);
 
-        const req = httpMock.expectOne(`${url}/${id}`);
+        const req = httpMock.expectOne(`${environment.backend}/users/${id}`);
         expect(req.request.method).toEqual('DELETE');
-        expect(req.request.url).toEqual(`${url}/${id}`);
+        expect(req.request.url).toEqual(`${environment.backend}/users/${id}`);
         httpMock.verify();
     });
 });

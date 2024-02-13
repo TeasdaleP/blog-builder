@@ -21,8 +21,8 @@ export class AuthService {
       .where('user.email = email', { email: loginDto.email })
       .getOne()
 
+    console.log(user);
     if (!user || user.email !== loginDto.email) {
-      console.log('here?')
       throw new UnauthorizedException();
     } 
 

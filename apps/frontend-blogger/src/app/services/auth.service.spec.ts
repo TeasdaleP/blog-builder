@@ -2,6 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from "@angular/common/
 import { HttpClient } from "@angular/common/http";
 import { TestBed } from "@angular/core/testing";
 import { AuthService } from "./auth.service";
+import { environment } from "../../environments/environment";
 
 describe('Auth Service', () => {
     let service: AuthService;
@@ -9,8 +10,6 @@ describe('Auth Service', () => {
 
     let httpMock: HttpTestingController;
     let httpClient: HttpClient;
-
-    let url = 'http://localhost:3000/auth/login'; 
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -35,10 +34,10 @@ describe('Auth Service', () => {
 
         service.login$(payload.email, payload.password).subscribe((any) => result = any);
     
-        const req = httpMock.expectOne(url);
+        const req = httpMock.expectOne(`${environment.backend}/auth/login`);
         expect(req.request.method).toEqual('POST');
         expect(req.request.body).toEqual(payload);
-        expect(req.request.url).toEqual(url);
+        expect(req.request.url).toEqual(`${environment.backend}/auth/login`);
         httpMock.verify();
     });
 });

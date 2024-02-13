@@ -6,11 +6,27 @@ import { Repository } from 'typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 
-import * as LIBRARY from 'posts-data/src/index';
-
 describe('PostsService', () => {
   let service: PostsService;
   let postRepository: Repository<Post>;
+
+  let UUID = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
+
+  let PART_POST_DATA = {
+    title: 'the title for the partial test data object',
+    date: new Date(),
+    description: 'the description for the pertial test data object'
+  }
+
+  let FULL_POST_DATA = {
+    title: 'the title for the full test data object',
+    date: new Date(),
+    author: 'the author for the full test data object',
+    description: 'the description for the full test data object',
+    tags: [],
+    images: [],
+    comments: []
+  }
 
   let mockPostRepository = {
     save: jest.fn(),
@@ -42,7 +58,7 @@ describe('PostsService', () => {
 
   describe('create', () => {
     it('should be able to successfully save a quote with correct paylaod', async() => {
-      let newPost: CreatePostDto = LIBRARY.FULL_POST_DATA;
+      let newPost: CreatePostDto = FULL_POST_DATA;
   
       await service.create(newPost);
       expect(postRepository.save).toHaveBeenCalledWith(newPost);
@@ -64,8 +80,8 @@ describe('PostsService', () => {
 
   describe('update', () => {
     it('should be able to successfully update a post correct paylaod', async() => {
-      let id = LIBRARY.UUID[0];
-      let updatedPost: UpdatePostDto = LIBRARY.PART_POST_DATA;
+      let id = UUID;
+      let updatedPost: UpdatePostDto = PART_POST_DATA;
   
       await service.update(id, updatedPost);
       expect(postRepository.save).toHaveBeenCalledWith({
@@ -77,7 +93,7 @@ describe('PostsService', () => {
 
   describe('remove', () => {
     it('should be able to successfully delete a post with the correct id', async() => {
-      let id = LIBRARY.UUID[0];
+      let id = UUID;
       await service.remove(id);
       expect(postRepository.delete).toHaveBeenCalledWith(id);
     });

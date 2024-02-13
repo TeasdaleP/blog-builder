@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { PhotosComponent } from '../../components/photos/photos.component';
 import { BackwardsComponent } from '../../components/backwards/backwards.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavigationComponent } from '../../components/navigation/navigation.component';
@@ -14,7 +13,7 @@ import { selectAllPosts } from '../../ngrx/post';
 @Component({
   selector: 'blog-builder-details',
   standalone: true,
-  imports: [CommonModule, NavigationComponent, FooterComponent, PhotosComponent, BackwardsComponent, RouterModule],
+  imports: [CommonModule, NavigationComponent, FooterComponent, BackwardsComponent, RouterModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss',
 })

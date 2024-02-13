@@ -1,9 +1,9 @@
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { HttpClient } from "@angular/common/http";
 import { TestBed } from "@angular/core/testing";
-import { UserService } from "./user.service";
 import { Post } from "../interface/post.data";
 import { PostService } from "./post.service";
+import { environment } from "../../environments/environment";
 
 describe('Post Service', () => {
     let service: PostService;
@@ -11,8 +11,6 @@ describe('Post Service', () => {
 
     let httpMock: HttpTestingController;
     let httpClient: HttpClient;
-
-    let url = 'http://localhost:3000/posts'; 
 
     let id = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
 
@@ -44,28 +42,28 @@ describe('Post Service', () => {
     it('service should allow to add posts', () => {
         service.addPost$(mockPost).subscribe((any) => result = any);
     
-        const req = httpMock.expectOne(url);
+        const req = httpMock.expectOne(`${environment.backend}/posts`);
         expect(req.request.method).toEqual('POST');
         expect(req.request.body).toEqual(mockPost);
-        expect(req.request.url).toEqual(url);
+        expect(req.request.url).toEqual(`${environment.backend}/posts`);
         httpMock.verify();
     });
 
     it('service should allow to get posts', () => {
         service.getAllPosts$().subscribe((any) => result = any);
 
-        const req = httpMock.expectOne(url);
+        const req = httpMock.expectOne(`${environment.backend}/posts`);
         expect(req.request.method).toEqual('GET');
-        expect(req.request.url).toEqual(url);
+        expect(req.request.url).toEqual(`${environment.backend}/posts`);
         httpMock.verify();
     });
 
     it('service should allow to delete posts', () => {
         service.deletePost$(id).subscribe((any) => result = any);
 
-        const req = httpMock.expectOne(`${url}/${id}`);
+        const req = httpMock.expectOne(`${environment.backend}/posts/${id}`);
         expect(req.request.method).toEqual('DELETE');
-        expect(req.request.url).toEqual(`${url}/${id}`);
+        expect(req.request.url).toEqual(`${environment.backend}/posts/${id}`);
         httpMock.verify();
     });
 });
