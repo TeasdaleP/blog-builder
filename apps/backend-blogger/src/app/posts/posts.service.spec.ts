@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 
-describe('PostsService', () => {
+describe('Posts Service', () => {
   let service: PostsService;
   let postRepository: Repository<Post>;
 

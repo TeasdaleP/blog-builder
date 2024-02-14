@@ -14,6 +14,7 @@ describe('User Service', () => {
     let httpClient: HttpClient;
 
     let id = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
+    let token = '5s7xx1gkUP8JeSAVyrAtgKF7yPeCCkZ6GOEdXJmrRoabg1RF2eLlVidjlbH8qkiF3zKFddz1x4KmXLmBzgYUst0l9EEDWQe2IQA7';
 
     let mockUser: User = {
         firstname: 'phil',
@@ -39,28 +40,30 @@ describe('User Service', () => {
 
     it('should be able to post to the register$ endpoint', () => {
         service.register$(mockUser).subscribe((any) => result = any);
-    
         const req = httpMock.expectOne(`${environment.backend}/users`);
+
         expect(req.request.method).toEqual('POST');
         expect(req.request.body).toEqual(mockUser);
+        expect(JSON.stringify(req.request.headers)).not.toContain(token);
         expect(req.request.url).toEqual(`${environment.backend}/users`);
         httpMock.verify();
     });
 
     it('should be able to get users from the getUser$ endpoint', () => {
-        service.getUser$(id).subscribe((any) => result = any);
-
+        service.getUser$(id, token).subscribe((any) => result = any);
         const req = httpMock.expectOne(`${environment.backend}/users/${id}`);
+
         expect(req.request.method).toEqual('GET');
         expect(req.request.url).toEqual(`${environment.backend}/users/${id}`);
         httpMock.verify();
     });
 
     it('should be able to get all users the getAllUser$ endpoint', () => {
-        service.getAllUser$().subscribe((any) => result = any);
-
+        service.getAllUser$(token).subscribe((any) => result = any);
         const req = httpMock.expectOne(`${environment.backend}/users`);
+
         expect(req.request.method).toEqual('GET');
+        expect(JSON.stringify(req.request.headers)).toContain(token);
         expect(req.request.url).toEqual(`${environment.backend}/users`);
         httpMock.verify();
     });
@@ -73,20 +76,22 @@ describe('User Service', () => {
             account: Account.Blogger
         }
 
-        service.updateUser$(id, updatedUser).subscribe((any) => result = any);
-
+        service.updateUser$(id, updatedUser, token).subscribe((any) => result = any);
         const req = httpMock.expectOne(`${environment.backend}/users/${id}`);
+
         expect(req.request.method).toEqual('PATCH');
+        expect(JSON.stringify(req.request.headers)).toContain(token);
         expect(req.request.body).toEqual(updatedUser);
         expect(req.request.url).toEqual(`${environment.backend}/users/${id}`);
         httpMock.verify();
     });
 
     it('should be able to delete the users with the deleteUsers$ endpoint', () => {
-        service.deleteUsers$(id).subscribe((any) => result = any);
-
+        service.deleteUsers$(id, token).subscribe((any) => result = any);
         const req = httpMock.expectOne(`${environment.backend}/users/${id}`);
+        
         expect(req.request.method).toEqual('DELETE');
+        expect(JSON.stringify(req.request.headers)).toContain(token);
         expect(req.request.url).toEqual(`${environment.backend}/users/${id}`);
         httpMock.verify();
     });

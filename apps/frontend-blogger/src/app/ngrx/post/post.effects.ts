@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { createEffect, ofType, Actions } from "@ngrx/effects";
-import { exhaustMap, map, catchError, of, mergeMap } from "rxjs";
+import { exhaustMap, map, catchError, of, mergeMap, withLatestFrom, switchMap } from "rxjs";
 import { PostService } from "../../services/post.service";
+import { Post } from "../../interface/post.data";
+import { selectUserToken } from "../auth";
+import { Store } from "@ngrx/store";
 
 import * as PostAction from './post.actions';
-import { Post } from "../../interface/post.data";
 
 @Injectable()
 export class PostEffects {
@@ -17,14 +19,16 @@ export class PostEffects {
         ))
     ));
 
+    /** Requires Auth Token */
     addPost$ = createEffect(() => this.actions$.pipe(
         ofType(PostAction.addPost),
-        exhaustMap((action) => {
+        withLatestFrom(this.store.select(selectUserToken)),
+        switchMap(([action, state]) => {
             let payload: Post = {
                 ...action.payload,
                 date: new Date
             }
-            return this.postService.addPost$(payload).pipe(
+            return this.postService.addPost$(payload, state).pipe(
                 mergeMap((payload) => {
                     return [
                         PostAction.addPostSuccess({ payload: payload }),
@@ -36,9 +40,11 @@ export class PostEffects {
         })
     ));
 
+    /** Requires Auth Token */
     deletePost$ = createEffect(() => this.actions$.pipe(
         ofType(PostAction.deletePost),
-        exhaustMap((action) => this.postService.deletePost$(action.id).pipe(
+        withLatestFrom(this.store.select(selectUserToken)),
+        switchMap(([action, state]) => this.postService.deletePost$(action.id, state).pipe(
             mergeMap((response) => {
                 return [
                     PostAction.deletePostSuccess({ payload: response }),
@@ -49,5 +55,5 @@ export class PostEffects {
         ))
     ));
     
-    constructor(private postService: PostService, private actions$: Actions) {}
+    constructor(private postService: PostService, private actions$: Actions, private store: Store) {}
 }

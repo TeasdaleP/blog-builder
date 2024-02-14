@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../interface/user.interface";
@@ -15,19 +15,31 @@ export class UserService {
         return this.http.post<User>(`${environment.backend}/users`, payload);
     }
 
-    getUser$(id: string | undefined): Observable<User> {
-        return this.http.get<User>(`${environment.backend}/users/${id}`);
+    /** Requires Auth Token */
+    getUser$(id: string | undefined, token: string): Observable<User> {
+        const headers = this.getHeaders(token);
+        return this.http.get<User>(`${environment.backend}/users/${id}`, { headers });
     }
 
-    getAllUser$(): Observable<User[]> {
-        return this.http.get<User[]>(`${environment.backend}/users`);
+    /** Requires Auth Token */
+    getAllUser$(token: string): Observable<User[]> {
+        const headers = this.getHeaders(token);
+        return this.http.get<User[]>(`${environment.backend}/users`, { headers });
     }
 
-    updateUser$(id: string | undefined, payload: User): Observable<User> {
-        return this.http.patch<User>(`${environment.backend}/users/${id}`, payload);
+    /** Requires Auth Token */
+    updateUser$(id: string | undefined, payload: User, token: string): Observable<User> {
+        const headers = this.getHeaders(token);
+        return this.http.patch<User>(`${environment.backend}/users/${id}`, payload, { headers });
     }
 
-    deleteUsers$(id: string): Observable<any> {
-        return this.http.delete<any>(`${environment.backend}/users/${id}`)
+    /** Requires Auth Token */
+    deleteUsers$(id: string, token: string): Observable<any> {
+        const headers = this.getHeaders(token);
+        return this.http.delete<any>(`${environment.backend}/users/${id}`, { headers })
+    }
+
+    private getHeaders(token: string): any {
+        return new HttpHeaders().set('Bearer', token).set('Accept','application/json')
     }
 }

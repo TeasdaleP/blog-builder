@@ -4,7 +4,7 @@ import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 
-describe('PostsController', () => {
+describe('Posts Controller', () => {
   let controller: PostsController;
   let service: PostsService;
 

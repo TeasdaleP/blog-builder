@@ -1,19 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiGatewayTimeoutResponse, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { HttpOkDesc, HttpTimeoutDesc, HttpUnAuthDesc } from '../../app.constants';
+import { Public } from '../auth/guard/token.guard';
 
-/**
- *  these request will need to be verified by the guard, specifically verifying the token
- */
 
 @ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Public()
   @Post()
   @ApiOperation({ description: 'This POST request is for adding new users to the blog'})
   @ApiOkResponse({ description: HttpOkDesc })

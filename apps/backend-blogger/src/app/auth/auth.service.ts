@@ -21,13 +21,11 @@ export class AuthService {
       .where('user.email = email', { email: loginDto.email })
       .getOne()
 
-    console.log(user);
     if (!user || user.email !== loginDto.email) {
       throw new UnauthorizedException();
     } 
 
     const validated = bcrypt.compareSync(loginDto.password, user.password);
-    console.log(validated);
     
     if (validated) {
       return {

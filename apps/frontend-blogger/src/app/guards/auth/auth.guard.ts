@@ -7,12 +7,13 @@ import { Store } from '@ngrx/store';
 export const authGuard: CanActivateFn = (activated, route) => {
   const store = inject(Store)
   const router = inject(Router)
+  
   return store.select(selectUserId).pipe(map((id) => {
     if (id) {
-      return true
+      return true;
     } else {
       router.navigate(['login']);
-      return false
+      return false;
     }
   }));
 };

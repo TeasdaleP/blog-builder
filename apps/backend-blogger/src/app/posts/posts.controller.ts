@@ -4,6 +4,7 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { ApiGatewayTimeoutResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { HttpOkDesc, HttpTimeoutDesc } from '../../app.constants';
+import { Public } from '../auth/guard/token.guard';
 
 @ApiTags('Posts')
 @Controller('posts')
@@ -18,10 +19,11 @@ export class PostsController {
     return this.postsService.create(createPostDto);
   }
 
+  @Public()
+  @Get()
   @ApiOperation({ description: 'This GET request allows users to retrieve all blog posts' })
   @ApiOkResponse({ description: HttpOkDesc })
   @ApiGatewayTimeoutResponse({ description: HttpTimeoutDesc })
-  @Get()
   findAll() {
     return this.postsService.findAll();
   }

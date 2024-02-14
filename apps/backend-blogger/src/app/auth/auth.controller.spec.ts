@@ -1,8 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { LoginAuthDto } from './dto/login-auth.dto';
 
-describe('AuthController', () => {
+describe('Auth Controller', () => {
   let controller: AuthController;
   let service: AuthService;
 
@@ -26,5 +27,15 @@ describe('AuthController', () => {
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  it('should be able to login', async() => {
+    let login: LoginAuthDto = {
+      email: 'phil@teasdale.com',
+      password: 'password'
+    }
+
+    await controller.login(login);
+    expect(service.login).toHaveBeenCalledWith(login);
   });
 });
