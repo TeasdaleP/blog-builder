@@ -32,7 +32,7 @@
             <div class="details-content-heading">Comments</div>
 
             <div class="details-comment-add" *ngIf="(loggedIn$ | async)">
-                <p>Logged In</p>
+                <blog-builder-add-comment (newComment)="handleAddComment($event)"></blog-builder-add-comment>
             </div>
 
             <div class="details-comment-list">

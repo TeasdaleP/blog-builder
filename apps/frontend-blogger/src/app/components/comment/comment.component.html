@@ -1,7 +1,7 @@
 <div class="comment">
     <div class="comment-inner">
-        <div class="comment-date">{{ comment?.date | date: 'dd/MM/yyyy' }}</div>
-        <div class="comment-name">{{ comment?.author | titlecase }}</div>
+        <div class="comment-column">{{ comment?.author | titlecase }}</div>
+        <div class="comment-column">{{ comment?.date | date: 'dd MMMM' }}</div>
         <div class="comment-description" [innerHtml]="comment?.comment"></div>
     </div>
 </div>

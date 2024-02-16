@@ -13,11 +13,13 @@ import { EmptyComponent } from '../../components/empty/empty.component';
 import { Comment } from '../../interface/comment.data';
 import { CommentComponent } from '../../components/comment/comment.component';
 import { getComments, selectComments } from '../../ngrx/comments';
+import { AddCommentComponent } from '../../components/add-comment/add-comment.component';
+import { addComment } from '../../ngrx/comments/comments.actions';
 
 @Component({
   selector: 'blog-builder-details',
   standalone: true,
-  imports: [CommonModule, NavigationComponent, FooterComponent, BackwardsComponent, RouterModule, EmptyComponent, CommentComponent],
+  imports: [CommonModule, NavigationComponent, FooterComponent, BackwardsComponent, RouterModule, EmptyComponent, CommentComponent, AddCommentComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss',
 })
@@ -50,4 +52,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
+
+  public handleAddComment(event: string): void {
+    this.store.dispatch(addComment({ comment: event, postId: this.id }));
+  } 
 }

@@ -4,7 +4,7 @@ export interface Comment {
     date: Date;
     author: string;
     comment: string;
-    postId?: string;
+    blogId?: string;
 }
 
 export const INITIAL_COMMENT_STATE: Array<Comment> | Array<any> = [];
