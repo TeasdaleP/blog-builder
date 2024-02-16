@@ -11,7 +11,11 @@
                 <blog-builder-post [id]="post?.id" [image]="undefined" [title]="post?.title" [description]="post?.description"></blog-builder-post>
             }
             @empty {
-                <blog-builder-no-post></blog-builder-no-post>
+                <blog-builder-empty
+                    [title]=" 'no recent posts!' "
+                    [subtitle]=" 'There are currently no recent posts to display. Dont worry, we will post something pretty soon.' "
+                    [type]=" 'CARD' "
+                ></blog-builder-empty>
             }
         </div>
     </div>

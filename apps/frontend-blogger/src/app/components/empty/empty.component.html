@@ -1,0 +1,9 @@
+<div class="empty">
+    <div class="empty-content empty-border" [class.nopost-card]="type === 'CARD'">
+        <div class="empty-spacing" [class.empty-doublespace]="type === 'CARD'">
+            <h4 class="empty-title" *ngIf="type === 'INLINE'">{{ title | titlecase }}</h4>
+            <h2 class="empty-title" *ngIf="type === 'CARD'">{{ title | titlecase }} 😰</h2>
+            <p>{{ subtitle }}</p>
+        </div>
+    </div>
+</div>

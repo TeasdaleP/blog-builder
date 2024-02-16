@@ -30,9 +30,22 @@
     <div class="details-content-card">
         <div class="details-content-inner">
             <div class="details-content-heading">Comments</div>
-            
-            <div class="alert">
-                TODO: Logged in users will be able to add comments to posts
+
+            <div class="details-comment-add" *ngIf="(loggedIn$ | async)">
+                <p>Logged In</p>
+            </div>
+
+            <div class="details-comment-list">
+                @for (comment of comments$ | async; track comment?.id; let index = $index) {
+                    <blog-builder-comment [comment]="comment"></blog-builder-comment>
+                }
+                @empty {
+                    <blog-builder-empty
+                        [title]=" 'nothing to display' "
+                        [subtitle]=" 'There are currently no comments to display. Feel free to log in and post your comment.' "
+                        [type]=" 'INLINE' "
+                    ></blog-builder-empty>
+                }
             </div>
         </div>
     </div>

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NoPostComponent } from './no-post.component';
+import { EmptyComponent } from './empty.component';
 import { By } from '@angular/platform-browser';
 
-describe('Post Component', () => {
-  let component: NoPostComponent;
-  let fixture: ComponentFixture<NoPostComponent>;
+describe('Empty Component', () => {
+  let component: EmptyComponent;
+  let fixture: ComponentFixture<EmptyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NoPostComponent],
+      imports: [EmptyComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NoPostComponent);
+    fixture = TestBed.createComponent(EmptyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

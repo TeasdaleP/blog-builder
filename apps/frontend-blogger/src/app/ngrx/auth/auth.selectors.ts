@@ -7,4 +7,6 @@ export const selectAuthFeature = createFeatureSelector<Auth>(featureKey);
 
 export const selectUserId = createSelector(selectAuthFeature, (state: Auth): string | undefined => state?.id);
 
-export const selectUserToken = createSelector(selectAuthFeature, (state: Auth): string => state?.token)
+export const selectUserToken = createSelector(selectAuthFeature, (state: Auth): string => state?.token);
+
+export const selectIsLoggedIn = createSelector(selectAuthFeature, (state: Auth): boolean => state?.token && state?.id ? true : false);
