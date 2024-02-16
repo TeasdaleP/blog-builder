@@ -10,7 +10,7 @@ import { User } from '../../interface/user.interface';
 import { Account } from '../../enums/account.enum';
 import { addPost, deletePost, selectAllPosts } from '../../ngrx/post';
 import { Post } from '../../interface/post.data';
-import { AddPostComponent } from '../../components/app-post/add-post.component';
+import { AddPostComponent } from '../../components/add-post/add-post.component';
 import { Actions, ofType } from '@ngrx/effects';
 
 import * as PostActions from '../../ngrx/post';
