@@ -64,7 +64,7 @@ The database has been strcutured in such a way that will help link data effectiv
 
 ## Application
 
-The database has been strcutured in such a way that will help link data effectively and the use of UUID for the primary column will help link smaller tables more effectively as seen: 
+The application will consist of a user facing website, authentication for users to add comments to blogs. The otherside of the application will be user management which allows admins to adminstrate effectively, bloggers can add new post and users will be able to see comments they've made to posts. Some screenshots include: 
 
 https://github.com/TeasdaleP/blog-builder/assets/34505340/b647e33a-32b4-4532-8de7-3dbfa5d17fab
 
