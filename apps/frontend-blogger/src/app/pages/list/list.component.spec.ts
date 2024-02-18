@@ -49,7 +49,7 @@ describe('ListComponent', () => {
     let heading = fixture.debugElement.query(By.css('.list-heading')).nativeElement;
     let subheading = fixture.debugElement.query(By.css('.list-subheading')).nativeElement;
 
-    expect(heading.textContent).toBe('Our Latest Posts');
+    expect(heading.textContent).toBe('Latest Posts');
     expect(subheading.textContent).toBe('Dive into our latest blog posts and tell us what you think...');
   });
 
@@ -65,7 +65,7 @@ describe('ListComponent', () => {
     component.posts$ = of([]);
     fixture.detectChanges();
 
-    let nopostcomponent = fixture.debugElement.query(By.css('blog-builder-no-post')).nativeElement;
+    let nopostcomponent = fixture.debugElement.query(By.css('blog-builder-empty')).nativeElement;
     expect(nopostcomponent).toBeDefined();
   });
 

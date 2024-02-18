@@ -6,6 +6,7 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Post } from '../../interface/post.data';
 import { By } from '@angular/platform-browser';
+import { Comment } from '../../interface/comment.data';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;
@@ -15,9 +16,12 @@ describe('DetailsComponent', () => {
   let actions: Observable<any>;
   let route: ActivatedRoute;
 
+  let mockId = '1234567890';
+  let uuid = '9ec04e53-d82a-452e-835d-dfc471f94bb1'
+
   let posts: Post[] = [
     {
-      id: '9ec04e53-d82a-452e-835d-dfc471f94bb1',
+      id: uuid,
       title: 'the first title',
       date: new Date(),
       author: 'the first author',
@@ -32,8 +36,23 @@ describe('DetailsComponent', () => {
     }
   ]
 
+  let comments: Comment[] = [
+    {
+      id: uuid,
+      date: new Date(),
+      author: 'phil teasdale',
+      comment: 'this is the first comment',
+    },
+    {
+      id: uuid,
+      date: new Date(),
+      author: 'joe bloggs',
+      comment: 'this is the second comment',
+    }
+  ]
+
   let mockActivedRoute = {
-    params: new BehaviorSubject({ id: '1234567890'})
+    params: new BehaviorSubject({ id: mockId })
   }
  
   beforeEach(async () => {
@@ -74,11 +93,37 @@ describe('DetailsComponent', () => {
     expect(description.textContent).toBe(posts[1].description);
   });
 
-  it('should show a to do alert for the comments section', () => {
+  it('should have a heading for the comments section', () => {
     let title = fixture.debugElement.query(By.css('.details-content-heading')).nativeElement;
     expect(title.textContent).toBe('Comments');
+  });
 
-    let alert = fixture.debugElement.query(By.css('.alert')).nativeElement;
-    expect(alert.textContent).toContain('Logged in users will be able to add comments to posts');
+  it('should allow logged in users to add new comments', () => {
+    const dispatch = jest.spyOn(store, 'dispatch');
+    component.loggedIn$ = of(true);
+    fixture.detectChanges();
+
+    let addComment = fixture.debugElement.query(By.css('blog-builder-add-comment'));
+    expect(addComment).toBeDefined();
+
+    let comment = 'this is a new comment';
+    component.handleAddComment(comment);
+    expect(dispatch).toHaveBeenCalledWith({ type: '[Comments] Add', postId: mockId, comment: comment });
+  });
+
+  it('should show a list of comments if they are available', () => {
+    component.comments$ = of(comments);
+    fixture.detectChanges();
+
+    let comment = fixture.debugElement.query(By.css('blog-builder-comment'));
+    expect(comment).toBeDefined();
+  });
+
+  it('should show the empty coment if no comments are available', () => {
+    component.comments$ = of([]);
+    fixture.detectChanges();
+
+    let empty = fixture.debugElement.query(By.css('blog-builder-empty'));
+    expect(empty).toBeDefined();
   });
 });
