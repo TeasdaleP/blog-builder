@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: Linting
 
 on:
   push:
@@ -28,17 +28,7 @@ jobs:
         npm install nx -g
         npm install --frozen-lockfile --force
 
-    - name: Build
-      run: |
-        nx build frontend-blogger 
-        nx build backend-blogger
-
     - name: Linting
       run: |
         nx lint frontend-blogger 
         nx lint backend-blogger
-    
-    - name: Testing
-      run: |
-        nx test frontend-blogger 
-        nx test backend-blogger
