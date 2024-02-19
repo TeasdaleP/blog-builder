@@ -32,6 +32,11 @@ jobs:
       run: |
         nx build frontend-blogger 
         nx build backend-blogger
+
+    - name: Linting
+      run: |
+        nx lint frontend-blogger 
+        nx lint backend-blogger
     
     - name: Testing
       run: |
