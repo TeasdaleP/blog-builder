@@ -31,6 +31,13 @@ nx test frontend-blogger --code-coverage --watch
 nx test frontend-blogger --test-file file-name.component.spec.ts
 ```
 
+### E2E Automation Development 
+
+The automated tests are completed using Playwright, specifically focused on Chrome, Firefox and Safari browsers by navigating to http://localhost:9323. Please serve the frontend and backend applications (API mocking will be completed separately) and the tests will run focus on authentication, the blog posts and routing guards. Some useful commands include: 
+
+```
+nx e2e frontend-blogger-e2e --debug
+```
 
 ### Backend Development 
 
@@ -76,7 +83,8 @@ https://github.com/TeasdaleP/blog-builder/assets/34505340/c87085d3-52ff-4165-ab7
 
 The application is still a work in progress and the following items are the future development to mature the application. Including: 
 
-- Adding the ability to add comments when logged in / the ability for everyone to view comments.
+- ~~Adding the ability to add comments when logged in / the ability for everyone to view comments.~~
+- ~~Inclduing Build, Unit Testing & Linting results to the PR and main branch~~ 
 - Including automated tests using playwright
 - Adding the ability to upload images when adding a blog post.
 - Implementing the use of Docker to consolidate the deployment process.

@@ -1,4 +1,4 @@
-name: Combined Checks
+name: Main Branch
 
 on:
   push:
