@@ -24,7 +24,7 @@ export class PostEffects {
         ofType(PostAction.addPost),
         withLatestFrom(this.store.select(selectUserToken)),
         switchMap(([action, state]) => {
-            let payload: Post = {
+            const payload: Post = {
                 ...action.payload,
                 date: new Date
             }

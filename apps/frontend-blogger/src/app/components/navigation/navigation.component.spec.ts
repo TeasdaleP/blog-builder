@@ -12,7 +12,7 @@ describe('Navigation Component', () => {
   let fixture: ComponentFixture<NavigationComponent>;
   let store: MockStore;
 
-  let mockUser: User | undefined = {
+  const mockUser: User | undefined = {
     firstname: 'Phil',
     lastname: 'Teasdale',
     email: 'phil@teasdale.com',
@@ -46,8 +46,8 @@ describe('Navigation Component', () => {
 
   describe('Different Links', () => {
     it('should have home and login buttons when logged out', () => {
-      let exepected = ['Home', 'Login', ]
-      let links = fixture.debugElement.queryAll(By.css('.navigation-links'));
+      const exepected = ['Home', 'Login', ]
+      const links = fixture.debugElement.queryAll(By.css('.navigation-links'));
   
       links.forEach((link, index) => {
         expect(link.nativeElement.textContent).toBe(exepected[index]);
@@ -59,8 +59,8 @@ describe('Navigation Component', () => {
       component.loggedin = true;
       fixture.detectChanges();
 
-      let exepected = ['Home', mockUser?.firstname]
-      let links = fixture.debugElement.queryAll(By.css('.navigation-links'));
+      const exepected = ['Home', mockUser?.firstname]
+      const links = fixture.debugElement.queryAll(By.css('.navigation-links'));
   
       links.forEach((link, index) => {
         expect(link.nativeElement.textContent).toBe(exepected[index]);
@@ -73,8 +73,8 @@ describe('Navigation Component', () => {
     component.loggedin = true;
     fixture.detectChanges();
 
-    let links = fixture.debugElement.query(By.css('.navigation-profile')).nativeElement;
-    let image = fixture.debugElement.query(By.css('.navigation-avatar')).nativeElement;
+    const links = fixture.debugElement.query(By.css('.navigation-profile')).nativeElement;
+    const image = fixture.debugElement.query(By.css('.navigation-avatar')).nativeElement;
     
     expect(image.src).toContain('assets/logos/profile.png');
     expect(links.textContent).toContain(mockUser?.firstname);

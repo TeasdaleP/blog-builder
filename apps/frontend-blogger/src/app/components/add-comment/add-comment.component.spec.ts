@@ -33,7 +33,7 @@ describe('Add Comment Component', () => {
   it('should be able to sumbit when the comment is entered', () => {
     const emmitter = jest.spyOn(component.newComment, 'emit');
 
-    let comment = 'this is a new comment';
+    const comment = 'this is a new comment';
     
     component.form.get('comment')?.setValue(comment);
     component.onSubmit();

@@ -24,11 +24,10 @@ export class AddPostComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.form = this.formSetup()
-    this.config = this.getConfiguration();
   }
 
   ngOnInit(): void {
-      
+    this.config = this.getConfiguration();
   }
 
   public onSubmit(): void {

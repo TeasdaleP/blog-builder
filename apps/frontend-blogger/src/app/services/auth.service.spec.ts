@@ -27,7 +27,7 @@ describe('Auth Service', () => {
     });
 
     it('should be able to post to the login endpoint', () => {
-        let payload = {
+        const payload = {
             email: 'phil@teasdale,com',
             password: 'password'
         }

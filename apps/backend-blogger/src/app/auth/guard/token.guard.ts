@@ -1,7 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, SetMetadata, UnauthorizedException } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { JwtService } from "@nestjs/jwt";
-import { Request } from 'express';
 
 export const isPublicKey = 'isPublic';
 export const Public = () => SetMetadata(isPublicKey, true);

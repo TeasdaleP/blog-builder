@@ -21,7 +21,7 @@ import * as AuthActions from '../../ngrx/auth';
 export class LoginComponent implements OnInit, OnDestroy {
   public form: FormGroup;
 
-  private destroyed$: ReplaySubject<void> = new ReplaySubject();
+  private destroyed$ = new ReplaySubject<void>();
 
   constructor(private fb: FormBuilder, private store: Store, private actions: Actions, private router: Router) {
     this.form = this.formSetup();

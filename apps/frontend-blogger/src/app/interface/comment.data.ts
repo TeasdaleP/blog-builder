@@ -7,4 +7,4 @@ export interface Comment {
     blogId?: string;
 }
 
-export const INITIAL_COMMENT_STATE: Array<Comment> | Array<any> = [];
+export const INITIAL_COMMENT_STATE: Comment[] | any[] = [];

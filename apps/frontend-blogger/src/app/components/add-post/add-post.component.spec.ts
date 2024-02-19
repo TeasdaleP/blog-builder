@@ -8,7 +8,7 @@ describe('Add Post Component', () => {
   let component: AddPostComponent;
   let fixture: ComponentFixture<AddPostComponent>;
 
-  let user: User = {
+  const user: User = {
     firstname: 'phil',
     lastname: 'teasdale',
     email: 'phil@teasdale.com',
@@ -16,7 +16,7 @@ describe('Add Post Component', () => {
     account: Account.User
   }
 
-  let post: Post = {
+  const post: Post = {
     title: 'the title',
     author: `${user.firstname} ${user.lastname}`,
     description: 'the description',

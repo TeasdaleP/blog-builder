@@ -18,11 +18,11 @@ export class Post {
     description: string;
 
     @Column({ type: 'text', array: true, default: [], nullable: true })
-    images: Array<string>;
+    images: string[];
 
     @Column({ type: 'text', array: true, default: [], nullable: true })
-    tags: Array<string>;
+    tags: string[];
 
     @Column({ type: 'text', array: true, default: [], nullable: true })
-    comments: Array<string>;
+    comments: string[];
 }

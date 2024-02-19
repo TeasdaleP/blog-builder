@@ -20,7 +20,7 @@ import { getAllPosts, selectAllPosts } from '../../ngrx/post';
 export class ListComponent implements OnInit, OnDestroy {
   public posts$: Observable<Post[]>;
 
-  private destroyed$: ReplaySubject<void> = new ReplaySubject();
+  private destroyed$ = new ReplaySubject<void>();
 
   constructor(private store: Store) {
     this.posts$ = this.store.select(selectAllPosts).pipe(takeUntil(this.destroyed$));

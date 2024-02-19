@@ -8,9 +8,9 @@ describe('Comments Controller', () => {
   let controller: CommentsController;
   let service: CommentsService;
 
-  let UUID = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
+  const UUID = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
 
-  let mockCommentsService = {
+  const mockCommentsService = {
     create: jest.fn(),
     findAll: jest.fn(),
     findOne: jest.fn(),
@@ -35,7 +35,7 @@ describe('Comments Controller', () => {
   });
 
   it('should be able to create a comment via this API endpoint', async() => {
-    let newComment: CreateCommentDto = {
+    const newComment: CreateCommentDto = {
       date: new Date(),
       author: 'Phil Teasdale',
       comment: 'this is my comment',
@@ -53,14 +53,14 @@ describe('Comments Controller', () => {
     });
 
     it('should be able to find comments related to a specific blog via this API endpoint', async() => {
-      let id = UUID;
+      const id = UUID;
       await controller.findOne(id);
       expect(service.findOne).toHaveBeenCalledWith(id);
     });
   });
 
   it('should be able to successfully delete a comment with this API endpoint', async() => {
-    let comment: Comment = {
+    const comment: Comment = {
       id: UUID,
       date: new Date(),
       author: 'Phil Teasdale',

@@ -27,9 +27,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public allUsers$: Observable<User[] | undefined>;
   public posts$: Observable<Post[]>;
   public Account = Account;
-  public postSuccess: boolean = false;
+  public postSuccess = false;
 
-  private destroyed$: ReplaySubject<void> = new ReplaySubject();
+  private destroyed$ = new ReplaySubject<void>();
 
   constructor(private store: Store, private actions: Actions) {
     this.user$ = this.store.select(selectUser).pipe(takeUntil(this.destroyed$));

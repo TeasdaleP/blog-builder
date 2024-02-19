@@ -1,9 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { environment } from 'apps/frontend-blogger/src/environments/environment';
-import { Comment } from '../../interface/comment.data';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'blog-builder-add-comment',

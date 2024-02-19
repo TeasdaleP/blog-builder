@@ -23,7 +23,7 @@ export const INITIAL_USER_STATE: UserState = {
 export const userReducer = createReducer(
     INITIAL_USER_STATE,
     
-    on(UserActions.registerSuccess, (state, action) => ({ 
+    on(UserActions.registerSuccess, (state) => ({ 
         ...state 
     })),
     on(UserActions.getUserSuccess, (state, action) => ({ 

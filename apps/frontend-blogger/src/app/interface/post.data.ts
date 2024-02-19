@@ -4,9 +4,9 @@ export interface Post {
     date?: Date;
     author: string;
     description: string;
-    images?: Array<string>;
-    tags?: Array<string>;
-    comments?: Array<string>;
+    images?: string[];
+    tags?: string[];
+    comments?: string[];
 }
 
 export const MOCK_POST: Post = {

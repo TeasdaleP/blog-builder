@@ -16,10 +16,10 @@ describe('DetailsComponent', () => {
   let actions: Observable<any>;
   let route: ActivatedRoute;
 
-  let mockId = '1234567890';
-  let uuid = '9ec04e53-d82a-452e-835d-dfc471f94bb1'
+  const mockId = '1234567890';
+  const uuid = '9ec04e53-d82a-452e-835d-dfc471f94bb1'
 
-  let posts: Post[] = [
+  const posts: Post[] = [
     {
       id: uuid,
       title: 'the first title',
@@ -36,7 +36,7 @@ describe('DetailsComponent', () => {
     }
   ]
 
-  let comments: Comment[] = [
+  const comments: Comment[] = [
     {
       id: uuid,
       date: new Date(),
@@ -51,7 +51,7 @@ describe('DetailsComponent', () => {
     }
   ]
 
-  let mockActivedRoute = {
+  const mockActivedRoute = {
     params: new BehaviorSubject({ id: mockId })
   }
  
@@ -84,9 +84,9 @@ describe('DetailsComponent', () => {
 
     expect(component.post?.id).toBe(posts[1].id);
 
-    let title = fixture.debugElement.query(By.css('.details-heading')).nativeElement;
-    let subheadings = fixture.debugElement.queryAll(By.css('.details-subheading'));
-    let description = fixture.debugElement.query(By.css('.details-content-inner')).nativeElement;
+    const title = fixture.debugElement.query(By.css('.details-heading')).nativeElement;
+    const subheadings = fixture.debugElement.queryAll(By.css('.details-subheading'));
+    const description = fixture.debugElement.query(By.css('.details-content-inner')).nativeElement;
 
     expect(title.textContent).toBe(posts[1].title);
     expect(subheadings[0].nativeElement.textContent).toBe(posts[1].author);
@@ -94,7 +94,7 @@ describe('DetailsComponent', () => {
   });
 
   it('should have a heading for the comments section', () => {
-    let title = fixture.debugElement.query(By.css('.details-content-heading')).nativeElement;
+    const title = fixture.debugElement.query(By.css('.details-content-heading')).nativeElement;
     expect(title.textContent).toBe('Comments');
   });
 
@@ -103,10 +103,10 @@ describe('DetailsComponent', () => {
     component.loggedIn$ = of(true);
     fixture.detectChanges();
 
-    let addComment = fixture.debugElement.query(By.css('blog-builder-add-comment'));
+    const addComment = fixture.debugElement.query(By.css('blog-builder-add-comment'));
     expect(addComment).toBeDefined();
 
-    let comment = 'this is a new comment';
+    const comment = 'this is a new comment';
     component.handleAddComment(comment);
     expect(dispatch).toHaveBeenCalledWith({ type: '[Comments] Add', postId: mockId, comment: comment });
   });
@@ -115,7 +115,7 @@ describe('DetailsComponent', () => {
     component.comments$ = of(comments);
     fixture.detectChanges();
 
-    let comment = fixture.debugElement.query(By.css('blog-builder-comment'));
+    const comment = fixture.debugElement.query(By.css('blog-builder-comment'));
     expect(comment).toBeDefined();
   });
 
@@ -123,7 +123,7 @@ describe('DetailsComponent', () => {
     component.comments$ = of([]);
     fixture.detectChanges();
 
-    let empty = fixture.debugElement.query(By.css('blog-builder-empty'));
+    const empty = fixture.debugElement.query(By.css('blog-builder-empty'));
     expect(empty).toBeDefined();
   });
 });

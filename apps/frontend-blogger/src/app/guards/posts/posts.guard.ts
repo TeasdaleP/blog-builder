@@ -4,9 +4,10 @@ import { selectAllPosts } from '../../ngrx/post';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 
-export const postsGuard: CanActivateFn = (activated, route) => {
+export const postsGuard: CanActivateFn = () => {
   const store = inject(Store)
   const router = inject(Router)
+  
   return store.select(selectAllPosts).pipe(map((posts) => {
     if (posts.length > 0) {
       return true

@@ -7,7 +7,7 @@ describe('Auth Controller', () => {
   let controller: AuthController;
   let service: AuthService;
 
-  let mockAuthervice = {
+  const mockAuthervice = {
     create: jest.fn(),
     login: jest.fn()
   }
@@ -30,7 +30,7 @@ describe('Auth Controller', () => {
   });
 
   it('should be able to login', async() => {
-    let login: LoginAuthDto = {
+    const login: LoginAuthDto = {
       email: 'phil@teasdale.com',
       password: 'password'
     }

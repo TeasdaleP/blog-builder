@@ -41,8 +41,8 @@ describe('Empty Component', () => {
     component.type = 'INLINE';
     fixture.detectChanges();
 
-    let title = fixture.debugElement.query(By.css('h4')).nativeElement;
-    let subtitle = fixture.debugElement.query(By.css('p')).nativeElement;
+    const title = fixture.debugElement.query(By.css('h4')).nativeElement;
+    const subtitle = fixture.debugElement.query(By.css('p')).nativeElement;
 
     expect(title.textContent).toContain('Title');
     expect(subtitle.textContent).toContain('subtitle');
@@ -52,10 +52,10 @@ describe('Empty Component', () => {
     component.title = 'title';
     component.subtitle = 'subtitle';
 
-    let h2 = fixture.debugElement.query(By.css('h2'));
-    let h4 = fixture.debugElement.query(By.css('h4'));
-    let card = fixture.debugElement.query(By.css('.empty-card'));
-    let space = fixture.debugElement.query(By.css('.empty-doublespace'));
+    const h2 = fixture.debugElement.query(By.css('h2'));
+    const h4 = fixture.debugElement.query(By.css('h4'));
+    const card = fixture.debugElement.query(By.css('.empty-card'));
+    const space = fixture.debugElement.query(By.css('.empty-doublespace'));
 
     component.type = 'INLINE';
     fixture.detectChanges();

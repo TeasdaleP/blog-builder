@@ -31,7 +31,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public loggedIn$: Observable<boolean>;
   public comments$: Observable<Comment[]>;
 
-  private destroyed$: ReplaySubject<void> = new ReplaySubject();
+  private destroyed$ = new ReplaySubject<void>();
   
   constructor(private store: Store, private route: ActivatedRoute) {
     this.comments$ = this.store.select(selectComments).pipe(takeUntil(this.destroyed$));

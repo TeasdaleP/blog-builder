@@ -41,7 +41,7 @@ describe('Backwards Component', () => {
     component.ngOnInit();
     fixture.detectChanges();
 
-    let link = fixture.debugElement.query(By.css('.hero-link'));
+    const link = fixture.debugElement.query(By.css('.hero-link'));
     expect(link.nativeElement.textContent).toContain('Back');
   });
 });

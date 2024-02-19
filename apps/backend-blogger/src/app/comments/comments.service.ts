@@ -32,7 +32,7 @@ export class CommentsService {
       throw new BadRequestException();
     }
 
-    let update: Post = new Post();
+    const update: Post = new Post();
     update.id = blogId,
     update.title = post.title
     update.author = post.author,
@@ -68,7 +68,7 @@ export class CommentsService {
     const post = await this.dataSource.getRepository(Post).findOneBy({ id: blogId }); 
 
     if (post) {
-      let update: Post = new Post();
+      const update: Post = new Post();
       update.id = post.id,
       update.title = post.title
       update.author = post.author,
@@ -84,6 +84,6 @@ export class CommentsService {
       }
     }
 
-    return this.commentRepository.delete(commentId);;
+    return this.commentRepository.delete(commentId);
   }
 }

@@ -23,7 +23,7 @@ import * as UserActions from '../../ngrx/user';
 export class SignupComponent implements OnInit {
   public form: FormGroup;
 
-  private destroyed$: ReplaySubject<void> = new ReplaySubject();
+  private destroyed$ = new ReplaySubject<void>();
   
   constructor(private fb: FormBuilder, private store: Store, private actions: Actions, private router: Router) {
     this.form = this.formSetup()

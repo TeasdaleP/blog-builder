@@ -10,15 +10,15 @@ describe('Posts Service', () => {
   let service: PostsService;
   let postRepository: Repository<Post>;
 
-  let UUID = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
+  const UUID = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
 
-  let PART_POST_DATA = {
+  const PART_POST_DATA = {
     title: 'the title for the partial test data object',
     date: new Date(),
     description: 'the description for the pertial test data object'
   }
 
-  let FULL_POST_DATA = {
+  const FULL_POST_DATA = {
     title: 'the title for the full test data object',
     date: new Date(),
     author: 'the author for the full test data object',
@@ -28,7 +28,7 @@ describe('Posts Service', () => {
     comments: []
   }
 
-  let mockPostRepository = {
+  const mockPostRepository = {
     save: jest.fn(),
     find: jest.fn(),
     findOneBy: jest.fn(),
@@ -58,7 +58,7 @@ describe('Posts Service', () => {
 
   describe('create', () => {
     it('should be able to successfully save a quote with correct paylaod', async() => {
-      let newPost: CreatePostDto = FULL_POST_DATA;
+      const newPost: CreatePostDto = FULL_POST_DATA;
   
       await service.create(newPost);
       expect(postRepository.save).toHaveBeenCalledWith(newPost);
@@ -72,7 +72,7 @@ describe('Posts Service', () => {
     });
 
     it('should be able to find one record with a payload', async() => {
-      let id = '1234-sdassad-5678';
+      const id = '1234-sdassad-5678';
       await service.findOne(id);
       expect(postRepository.findOneBy).toHaveBeenCalledWith({ id });
     });
@@ -80,8 +80,8 @@ describe('Posts Service', () => {
 
   describe('update', () => {
     it('should be able to successfully update a post correct paylaod', async() => {
-      let id = UUID;
-      let updatedPost: UpdatePostDto = PART_POST_DATA;
+      const id = UUID;
+      const updatedPost: UpdatePostDto = PART_POST_DATA;
   
       await service.update(id, updatedPost);
       expect(postRepository.save).toHaveBeenCalledWith({
@@ -93,7 +93,7 @@ describe('Posts Service', () => {
 
   describe('remove', () => {
     it('should be able to successfully delete a post with the correct id', async() => {
-      let id = UUID;
+      const id = UUID;
       await service.remove(id);
       expect(postRepository.delete).toHaveBeenCalledWith(id);
     });
