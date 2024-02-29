@@ -13,10 +13,10 @@ describe('User Service', () => {
     let httpMock: HttpTestingController;
     let httpClient: HttpClient;
 
-    let id = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
-    let token = '5s7xx1gkUP8JeSAVyrAtgKF7yPeCCkZ6GOEdXJmrRoabg1RF2eLlVidjlbH8qkiF3zKFddz1x4KmXLmBzgYUst0l9EEDWQe2IQA7';
+    const id = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
+    const token = '5s7xx1gkUP8JeSAVyrAtgKF7yPeCCkZ6GOEdXJmrRoabg1RF2eLlVidjlbH8qkiF3zKFddz1x4KmXLmBzgYUst0l9EEDWQe2IQA7';
 
-    let mockUser: User = {
+    const mockUser: User = {
         firstname: 'phil',
         lastname: 'teasdale',
         email: 'phil@teasdale.com',
@@ -69,7 +69,7 @@ describe('User Service', () => {
     });
 
     it('should be able to patch the users with the updateUser$ endpoint', () => {
-        let updatedUser: User = {
+        const updatedUser: User = {
             firstname: 'phil',
             lastname: 'teasdale',
             email: 'phil@teasdale.com',

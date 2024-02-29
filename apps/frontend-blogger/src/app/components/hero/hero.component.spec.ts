@@ -30,10 +30,10 @@ describe('Hero Component', () => {
     component.subtitle = 'subtitle';
 
     fixture.detectChanges();
-    let title = fixture.debugElement.query(By.css('.hero-title')).nativeElement;
+    const title = fixture.debugElement.query(By.css('.hero-title')).nativeElement;
     expect(title.textContent).toContain('Title');
 
-    let subtitle = fixture.debugElement.query(By.css('.hero-subtitle')).nativeElement;
+    const subtitle = fixture.debugElement.query(By.css('.hero-subtitle')).nativeElement;
     expect(subtitle.textContent).toContain('subtitle');
   });
 
@@ -41,10 +41,10 @@ describe('Hero Component', () => {
     component.title = 'title';
 
     fixture.detectChanges();
-    let title = fixture.debugElement.query(By.css('.hero-title')).nativeElement;
+    const title = fixture.debugElement.query(By.css('.hero-title')).nativeElement;
     expect(title.textContent).toContain('Title');
 
-    let subtitle = fixture.debugElement.query(By.css('.hero-subtitle'));
+    const subtitle = fixture.debugElement.query(By.css('.hero-subtitle'));
     expect(subtitle).toBeNull();
     expect(component.subtitle).toBeUndefined();
   });

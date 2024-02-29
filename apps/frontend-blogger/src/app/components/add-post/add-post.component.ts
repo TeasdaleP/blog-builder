@@ -24,11 +24,10 @@ export class AddPostComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.form = this.formSetup()
-    this.config = this.getConfiguration();
   }
 
   ngOnInit(): void {
-      
+    this.config = this.getConfiguration();
   }
 
   public onSubmit(): void {
@@ -55,7 +54,7 @@ export class AddPostComponent implements OnInit {
 
   private getConfiguration(): any {
     return {
-      plugins: 'anchor autolink lists visualblocks wordcount checklist tinymcespellchecker autocorrect',
+      plugins: 'anchor autolink lists visualblocks wordcount',
       toolbar: 'undo redo | bold italic underline | spellcheckdialog | numlist bullist',
       menubar: '',
       content_css: './add-post.component.scss'

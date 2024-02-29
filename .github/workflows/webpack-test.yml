@@ -1,8 +1,6 @@
-name: NodeJS with Webpack
+name: Unit Testing
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -28,12 +26,7 @@ jobs:
         npm install nx -g
         npm install --frozen-lockfile --force
 
-    - name: Build
-      run: |
-        nx build frontend-blogger 
-        nx build backend-blogger
-    
-    - name: Testing
+    - name: Test
       run: |
         nx test frontend-blogger 
         nx test backend-blogger

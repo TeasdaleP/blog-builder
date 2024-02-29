@@ -12,7 +12,7 @@ describe('LoginComponent', () => {
   let store: MockStore;
   let actions: Observable<any>;
 
-  let login: any = {
+  const login: any = {
     email: 'phil@teasdale.com',
     password: 'password'
   }
@@ -39,13 +39,13 @@ describe('LoginComponent', () => {
   });
 
   it('should see the heading', () => {
-    let title = fixture.debugElement.query(By.css('.login-heading')).nativeElement;
+    const title = fixture.debugElement.query(By.css('.login-heading')).nativeElement;
     expect(title.textContent).toBe('Log In');
   });
 
   it('should see a prompt to register', () => {
-    let register = fixture.debugElement.query(By.css('.login-signup')).nativeElement;
-    let button = fixture.debugElement.query(By.css('.button-inline')).nativeElement;
+    const register = fixture.debugElement.query(By.css('.login-signup')).nativeElement;
+    const button = fixture.debugElement.query(By.css('.button-inline')).nativeElement;
 
     expect(register.textContent).toContain('Not registered?');
     expect(button.textContent).toContain('Sign up');
@@ -61,7 +61,7 @@ describe('LoginComponent', () => {
       fixture.detectChanges();
       component.onSubmit();
 
-      let errors = fixture.debugElement.queryAll(By.css('.form-error'));
+      const errors = fixture.debugElement.queryAll(By.css('.form-error'));
 
       expect(dispatch).not.toHaveBeenCalled();
       expect(errors[0].nativeElement.textContent).toBe('Your password is required');
@@ -83,12 +83,12 @@ describe('LoginComponent', () => {
 
   describe('Form Errors', () => {
     it('should see all fields with a required error when no value is entered', () => {
-      let errorMessages = ['Your email is required', 'Your password is required']
+      const errorMessages = ['Your email is required', 'Your password is required']
 
       component.form.markAllAsTouched();
       fixture.detectChanges()
 
-      let errors = fixture.debugElement.queryAll(By.css('.form-error'));
+      const errors = fixture.debugElement.queryAll(By.css('.form-error'));
 
       errors.forEach((error, index) => {
         expect(error.nativeElement.textContent).toBe(errorMessages[index]);
@@ -105,7 +105,7 @@ describe('LoginComponent', () => {
       fixture.detectChanges();
       component.onSubmit();
 
-      let errors = fixture.debugElement.queryAll(By.css('.form-error'));
+      const errors = fixture.debugElement.queryAll(By.css('.form-error'));
 
       expect(dispatch).not.toHaveBeenCalled();
       expect(errors[0].nativeElement.textContent).toBe('The email is invalid');

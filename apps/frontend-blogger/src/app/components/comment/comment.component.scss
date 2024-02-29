@@ -1,0 +1,25 @@
+@import '../../../styles.scss';
+
+.comment {
+    border: 0.75px solid $blog-primary;
+    color: $blog-secondary;
+    border-radius: 16px 0px 16px 16px;
+    margin-bottom: 15px;
+
+    &-inner {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &-column {
+        font-weight: 500;
+
+    }
+
+    &-description {
+        padding-top: 10px;
+        font-size: 12px;
+    }
+}

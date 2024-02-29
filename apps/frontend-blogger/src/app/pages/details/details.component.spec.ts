@@ -6,6 +6,7 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Post } from '../../interface/post.data';
 import { By } from '@angular/platform-browser';
+import { Comment } from '../../interface/comment.data';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;
@@ -15,9 +16,12 @@ describe('DetailsComponent', () => {
   let actions: Observable<any>;
   let route: ActivatedRoute;
 
-  let posts: Post[] = [
+  const mockId = '1234567890';
+  const uuid = '9ec04e53-d82a-452e-835d-dfc471f94bb1'
+
+  const posts: Post[] = [
     {
-      id: '9ec04e53-d82a-452e-835d-dfc471f94bb1',
+      id: uuid,
       title: 'the first title',
       date: new Date(),
       author: 'the first author',
@@ -32,8 +36,23 @@ describe('DetailsComponent', () => {
     }
   ]
 
-  let mockActivedRoute = {
-    params: new BehaviorSubject({ id: '1234567890'})
+  const comments: Comment[] = [
+    {
+      id: uuid,
+      date: new Date(),
+      author: 'phil teasdale',
+      comment: 'this is the first comment',
+    },
+    {
+      id: uuid,
+      date: new Date(),
+      author: 'joe bloggs',
+      comment: 'this is the second comment',
+    }
+  ]
+
+  const mockActivedRoute = {
+    params: new BehaviorSubject({ id: mockId })
   }
  
   beforeEach(async () => {
@@ -59,26 +78,52 @@ describe('DetailsComponent', () => {
   });
 
   it('should be able to filter to one post from an array', () => {
-    component.posts$ = of(posts);
+    component.post$ = of(posts[1]);
     component.ngOnInit();
     fixture.detectChanges();
 
-    expect(component.post?.id).toBe(posts[1].id);
+    component.post$.subscribe((post) => expect(post?.id).toBe(posts[1].id));
 
-    let title = fixture.debugElement.query(By.css('.details-heading')).nativeElement;
-    let subheadings = fixture.debugElement.queryAll(By.css('.details-subheading'));
-    let description = fixture.debugElement.query(By.css('.details-content-inner')).nativeElement;
+    const title = fixture.debugElement.query(By.css('.details-heading')).nativeElement;
+    const subheadings = fixture.debugElement.queryAll(By.css('.details-subheading'));
+    const description = fixture.debugElement.query(By.css('.details-content-inner')).nativeElement;
 
     expect(title.textContent).toBe(posts[1].title);
     expect(subheadings[0].nativeElement.textContent).toBe(posts[1].author);
     expect(description.textContent).toBe(posts[1].description);
   });
 
-  it('should show a to do alert for the comments section', () => {
-    let title = fixture.debugElement.query(By.css('.details-content-heading')).nativeElement;
+  it('should have a heading for the comments section', () => {
+    const title = fixture.debugElement.query(By.css('.details-content-heading')).nativeElement;
     expect(title.textContent).toBe('Comments');
+  });
 
-    let alert = fixture.debugElement.query(By.css('.alert')).nativeElement;
-    expect(alert.textContent).toContain('Logged in users will be able to add comments to posts');
+  it('should allow logged in users to add new comments', () => {
+    const dispatch = jest.spyOn(store, 'dispatch');
+    component.loggedIn$ = of(true);
+    fixture.detectChanges();
+
+    const addComment = fixture.debugElement.query(By.css('blog-builder-add-comment'));
+    expect(addComment).toBeDefined();
+
+    const comment = 'this is a new comment';
+    component.handleAddComment(comment);
+    expect(dispatch).toHaveBeenCalledWith({ type: '[Comments] Add', postId: mockId, comment: comment });
+  });
+
+  it('should show a list of comments if they are available', () => {
+    component.comments$ = of(comments);
+    fixture.detectChanges();
+
+    const comment = fixture.debugElement.query(By.css('blog-builder-comment'));
+    expect(comment).toBeDefined();
+  });
+
+  it('should show the empty coment if no comments are available', () => {
+    component.comments$ = of([]);
+    fixture.detectChanges();
+
+    const empty = fixture.debugElement.query(By.css('blog-builder-empty'));
+    expect(empty).toBeDefined();
   });
 });

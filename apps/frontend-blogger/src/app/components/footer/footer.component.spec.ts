@@ -21,12 +21,12 @@ describe('Footer Component', () => {
   });
 
   it('should include the footer content', () => {
-    let sentence = fixture.debugElement.query(By.css('.footer-sentence')).nativeElement;
+    const sentence = fixture.debugElement.query(By.css('.footer-sentence')).nativeElement;
     expect(sentence.textContent).toContain('Developed by');
   });
 
   it('should have my name highlighted', () => {
-    let sentence = fixture.debugElement.query(By.css('span')).nativeElement;
+    const sentence = fixture.debugElement.query(By.css('span')).nativeElement;
     expect(sentence.textContent).toContain('Phil Teasdale');
   });
 });

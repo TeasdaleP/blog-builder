@@ -12,10 +12,10 @@ describe('Post Service', () => {
     let httpMock: HttpTestingController;
     let httpClient: HttpClient;
 
-    let id = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
-    let token = '5s7xx1gkUP8JeSAVyrAtgKF7yPeCCkZ6GOEdXJmrRoabg1RF2eLlVidjlbH8qkiF3zKFddz1x4KmXLmBzgYUst0l9EEDWQe2IQA7';
+    const id = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
+    const token = '5s7xx1gkUP8JeSAVyrAtgKF7yPeCCkZ6GOEdXJmrRoabg1RF2eLlVidjlbH8qkiF3zKFddz1x4KmXLmBzgYUst0l9EEDWQe2IQA7';
 
-    let mockPost: Post = {
+    const mockPost: Post = {
         title: 'title',
         date: new Date(),
         author: 'author',

@@ -24,13 +24,13 @@ export class CreatePostDto {
 
     @ApiProperty({ title: 'images', type: [String], description: 'The array of image urls for the blog post', example: '[http://localhost:4200/assets/image.png]' })
     @IsArray()
-    images: Array<string>;
+    images: string[];
 
     @ApiProperty({ title: 'tags', type: [String], description: 'The array of tags for the blog post', example: '[travel, home, sport, music, weather]' })
     @IsArray()
-    tags: Array<string>;
+    tags: string[];
 
     @ApiProperty({ title: 'comments', type: [String], description: 'The array of UID for all the comments on the post', example: '[f8444fbd-40ae-4a77-8452-d4452edefd24, f8444fbd-40ae-4a77-8452-d4452edefd24]' })
     @IsArray()
-    comments: Array<string>;
+    comments: string[];
 }

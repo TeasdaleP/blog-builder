@@ -13,7 +13,7 @@ describe('ListComponent', () => {
   let store: MockStore;
   let actions: Observable<any>;
 
-  let post: Post = {
+  const post: Post = {
     id: '9ec04e53-d82a-452e-835d-dfc471f94bb1',
     title: 'the title for the full test data object',
     date: new Date(),
@@ -46,8 +46,8 @@ describe('ListComponent', () => {
   });
 
   it('should have a heading and subheading', () => {
-    let heading = fixture.debugElement.query(By.css('.list-heading')).nativeElement;
-    let subheading = fixture.debugElement.query(By.css('.list-subheading')).nativeElement;
+    const heading = fixture.debugElement.query(By.css('.list-heading')).nativeElement;
+    const subheading = fixture.debugElement.query(By.css('.list-subheading')).nativeElement;
 
     expect(heading.textContent).toBe('Latest Posts');
     expect(subheading.textContent).toBe('Dive into our latest blog posts and tell us what you think...');
@@ -57,7 +57,7 @@ describe('ListComponent', () => {
     component.posts$ = of([post]);
     fixture.detectChanges();
 
-    let nopostcomponent = fixture.debugElement.query(By.css('blog-builder-post')).nativeElement;
+    const nopostcomponent = fixture.debugElement.query(By.css('blog-builder-post')).nativeElement;
     expect(nopostcomponent).toBeDefined();
   });
 
@@ -65,7 +65,7 @@ describe('ListComponent', () => {
     component.posts$ = of([]);
     fixture.detectChanges();
 
-    let nopostcomponent = fixture.debugElement.query(By.css('blog-builder-no-post')).nativeElement;
+    const nopostcomponent = fixture.debugElement.query(By.css('blog-builder-empty')).nativeElement;
     expect(nopostcomponent).toBeDefined();
   });
 

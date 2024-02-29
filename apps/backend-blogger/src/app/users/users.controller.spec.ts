@@ -8,9 +8,9 @@ describe('Users Controller', () => {
   let controller: UsersController;
   let service: UsersService;
 
-  let UUID = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
+  const UUID = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
 
-  let mockUser = {
+  const mockUser = {
     firstname: 'Phil',
     lastname: 'Teasdale',
     email: 'phil@teasdale.com',
@@ -18,7 +18,7 @@ describe('Users Controller', () => {
     account: 'USER'
   }
 
-  let mockUserService = {
+  const mockUserService = {
     create: jest.fn(),
     findAll: jest.fn(),
     findOne: jest.fn(),
@@ -44,7 +44,7 @@ describe('Users Controller', () => {
   });
 
   it('should be able to create user via the API enpoint', async() => {
-    let newPost: CreateUserDto = mockUser;
+    const newPost: CreateUserDto = mockUser;
 
     await controller.register(newPost);
     expect(service.create).toHaveBeenCalledWith(newPost);
@@ -61,7 +61,7 @@ describe('Users Controller', () => {
   });
 
   it('should be able to update user record with partial payload', async() => {
-    let updateUser: UpdateUserDto = {
+    const updateUser: UpdateUserDto = {
       email: 'phil@new.email',
       account: 'ADMIN'
     }

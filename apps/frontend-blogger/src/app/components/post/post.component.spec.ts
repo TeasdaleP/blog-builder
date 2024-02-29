@@ -7,7 +7,7 @@ describe('Post Component', () => {
   let component: PostComponent;
   let fixture: ComponentFixture<PostComponent>;
 
-  let mockRouter = {
+  const mockRouter = {
     navigate: jest.fn()
   }
 
@@ -42,8 +42,8 @@ describe('Post Component', () => {
 
     fixture.detectChanges();
 
-    let title = fixture.debugElement.query(By.css('.post-title')).nativeElement;
-    let button = fixture.debugElement.query(By.css('.button')).nativeElement;
+    const title = fixture.debugElement.query(By.css('.post-title')).nativeElement;
+    const button = fixture.debugElement.query(By.css('.button')).nativeElement;
 
     expect(title.textContent).toBe('Title');
     expect(button.textContent).toBe('Read More');
@@ -61,7 +61,7 @@ describe('Post Component', () => {
   it('should present a default image when no image is provided', () => {
     fixture.detectChanges();
 
-    let image = fixture.debugElement.query(By.css('.post-image')).nativeElement;
+    const image = fixture.debugElement.query(By.css('.post-image')).nativeElement;
     expect(getComputedStyle(image).backgroundImage).toBe('url(assets/logos/post-default.png)');
   });
 
@@ -69,7 +69,7 @@ describe('Post Component', () => {
     component.image = 'http://url.com/image';
     fixture.detectChanges();
 
-    let image = fixture.debugElement.query(By.css('.post-image')).nativeElement;
+    const image = fixture.debugElement.query(By.css('.post-image')).nativeElement;
     expect(getComputedStyle(image).backgroundImage).toBe(`url(${component.image})`);
   });
 });

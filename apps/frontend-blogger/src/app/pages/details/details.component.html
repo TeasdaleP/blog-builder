@@ -12,9 +12,9 @@
                 </div>
                 <div class="details-column-large">
                     <div class="details-card-inner">
-                        <div class="details-heading">{{ post?.title }}</div>
-                        <div class="details-subheading">{{ post?.author }}</div>
-                        <div class="details-subheading">{{ post?.date | date: 'dd MMMM yyyy' }}</div>
+                        <div class="details-heading">{{ (post$ | async)?.title }}</div>
+                        <div class="details-subheading">{{ (post$ | async)?.author }}</div>
+                        <div class="details-subheading">{{ (post$ | async)?.date | date: 'dd MMMM yyyy' }}</div>
                     </div>
                 </div>
             </div>
@@ -24,15 +24,28 @@
 <div class="details-content">
     <div class="details-content-card">
         <div class="details-content-inner">
-            <div [innerHtml]="post?.description"></div>
+            <div [innerHtml]="(post$ | async)?.description"></div>
         </div>
     </div>
     <div class="details-content-card">
         <div class="details-content-inner">
             <div class="details-content-heading">Comments</div>
-            
-            <div class="alert">
-                TODO: Logged in users will be able to add comments to posts
+
+            <div class="details-comment-add" *ngIf="(loggedIn$ | async)">
+                <blog-builder-add-comment (newComment)="handleAddComment($event)"></blog-builder-add-comment>
+            </div>
+
+            <div class="details-comment-list">
+                @for (comment of comments$ | async; track comment?.id; let index = $index) {
+                    <blog-builder-comment [comment]="comment"></blog-builder-comment>
+                }
+                @empty {
+                    <blog-builder-empty
+                        [title]=" 'nothing to display' "
+                        [subtitle]=" 'There are currently no comments to display. Feel free to log in and post your comment.' "
+                        [type]=" 'INLINE' "
+                    ></blog-builder-empty>
+                }
             </div>
         </div>
     </div>

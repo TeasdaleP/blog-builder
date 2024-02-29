@@ -2,14 +2,13 @@ import { Test } from "@nestjs/testing";
 import { TokenGuard } from "./token.guard";
 import { Reflector } from "@nestjs/core";
 import { JwtService } from "@nestjs/jwt";
-import { ExecutionContext } from "@nestjs/common";
 
 describe('Token Guard', () => {
     let guard: TokenGuard;
 
-    let mockReflector = {}
+    const mockReflector = {}
 
-    let mockJwtService = {}
+    const mockJwtService = {}
 
     beforeEach(async () => {
         const moduleRef = await Test.createTestingModule({

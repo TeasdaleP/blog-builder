@@ -15,14 +15,14 @@ import { selectUser } from '../../ngrx/user';
   styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent implements OnInit, OnDestroy {
-  public loggedin: boolean = false;
+  public loggedin = false;
   public name!: string;
-  public open: boolean = false;
+  public open = false;
 
   public id$: Observable<string | undefined>;
   public user$: Observable<User | undefined>;
 
-  private destroyed$: ReplaySubject<void> = new ReplaySubject();
+  private destroyed$ = new ReplaySubject<void>();
   
   constructor(private store: Store){
     this.id$ = this.store.select(selectUserId).pipe(takeUntil(this.destroyed$));

@@ -3,7 +3,7 @@ import { SignupComponent } from './signup.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { User } from '../../interface/user.interface';
 import { Account } from '../../enums/account.enum';
@@ -14,7 +14,7 @@ describe('SignupComponent', () => {
   let store: MockStore;
   let actions: Observable<any>;
 
-  let user: User = {
+  const user: User = {
     firstname: 'phil',
     lastname: 'teasdale',
     email: 'phil@teasdale.com',
@@ -44,8 +44,8 @@ describe('SignupComponent', () => {
   });
 
   it('should have a specific title and subtitle', () => {
-    let title = fixture.debugElement.query(By.css('.signup-heading')).nativeElement;
-    let subheading = fixture.debugElement.query(By.css('.signup-content')).nativeElement;
+    const title = fixture.debugElement.query(By.css('.signup-heading')).nativeElement;
+    const subheading = fixture.debugElement.query(By.css('.signup-content')).nativeElement;
 
     expect(title.textContent).toBe('Sign up');
     expect(subheading.textContent).toContain('Join the blog so you can leave comments and like photos');
@@ -63,7 +63,7 @@ describe('SignupComponent', () => {
       fixture.detectChanges();
       component.onSubmit();
 
-      let errors = fixture.debugElement.queryAll(By.css('.form-error'));
+      const errors = fixture.debugElement.queryAll(By.css('.form-error'));
 
       expect(dispatch).not.toHaveBeenCalled();
       expect(errors[0].nativeElement.textContent).toBe('Your password is required');
@@ -87,7 +87,7 @@ describe('SignupComponent', () => {
 
   describe('Form Errors', () => {
     it('should see all fields with a required error when no value is entered', () => {
-      let errorMessages = [
+      const errorMessages = [
         'Your name is required', 'Your name is required',
         'Your email is required', 'Your password is required'
       ]
@@ -95,7 +95,7 @@ describe('SignupComponent', () => {
       component.form.markAllAsTouched();
       fixture.detectChanges()
 
-      let errors = fixture.debugElement.queryAll(By.css('.form-error'));
+      const errors = fixture.debugElement.queryAll(By.css('.form-error'));
 
       errors.forEach((error, index) => {
         expect(error.nativeElement.textContent).toBe(errorMessages[index]);
@@ -111,7 +111,7 @@ describe('SignupComponent', () => {
 
       fixture.detectChanges();
 
-      let errors = fixture.debugElement.queryAll(By.css('.form-error'));
+      const errors = fixture.debugElement.queryAll(By.css('.form-error'));
       expect(errors[0].nativeElement.textContent).toBe('The email is invalid');
     });
   })

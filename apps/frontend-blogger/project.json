@@ -78,7 +78,10 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint"
+      "executor": "@nx/eslint:lint",
+      "exclude": [
+        "**/node_modules/**"
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",

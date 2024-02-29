@@ -1,9 +1,7 @@
 @import '../../../styles.scss';
 
-.nopost {
-    margin-bottom: 30px;
+.empty {
     width: 100%;
-
    
     &-right {
         display: flex;
@@ -11,15 +9,19 @@
     }
 
     &-content {
-        background-color: white;
         height: 100%; 
     }
     
     &-spacing {
+        padding: 25px;
+    }
+
+    &-doublespace {
         padding: 50px;
     }
 
-    &-border {
+    &-card {
+        background-color: white;
         border-radius: 16px 0px 16px 16px;
         border: 1.5px solid $blog-footer;
     }

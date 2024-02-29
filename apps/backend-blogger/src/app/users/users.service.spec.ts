@@ -9,9 +9,9 @@ describe('Users Service', () => {
   let service: UsersService;
   let userRepository: Repository<User>;
 
-  let UUID = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
+  const UUID = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
 
-  let FULL_USER_DATA = {
+  const FULL_USER_DATA = {
     firstname: 'Phil',
     lastname: 'Teasdale',
     email: 'phil@teasdale.com',
@@ -19,7 +19,7 @@ describe('Users Service', () => {
     account: 'USER'
   }
 
-  let mockUserRepository = {
+  const mockUserRepository = {
     save: jest.fn(),
     find: jest.fn(),
     findOneBy: jest.fn(),
@@ -47,7 +47,7 @@ describe('Users Service', () => {
   });
 
   it('should be able to successfully register a new user with the correct payload', async() => {
-    let newUser: CreateUserDto = FULL_USER_DATA;
+    const newUser: CreateUserDto = FULL_USER_DATA;
 
     await service.create(newUser);
     expect(userRepository.save).toHaveBeenCalled();

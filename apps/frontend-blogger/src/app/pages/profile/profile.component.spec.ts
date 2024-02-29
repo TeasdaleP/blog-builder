@@ -15,7 +15,7 @@ describe('Profile Component', () => {
   let store: MockStore;
   let actions: Observable<any>;
 
-  let user: User = {
+  const user: User = {
     firstname: 'phil',
     lastname: 'teasdale',
     email: 'phil@teasdale.com',
@@ -46,10 +46,10 @@ describe('Profile Component', () => {
     component.user$ = of({ ...user, account: Account.User });
     fixture.detectChanges();
 
-    let expected = [user.email, 'User'];
+    const expected = [user.email, 'User'];
 
-    let title = fixture.debugElement.query(By.css('.profile-content-heading')).nativeElement;
-    let subheadings = fixture.debugElement.queryAll(By.css('.profile-subheading'));
+    const title = fixture.debugElement.query(By.css('.profile-content-heading')).nativeElement;
+    const subheadings = fixture.debugElement.queryAll(By.css('.profile-subheading'));
 
     expect(title.textContent).toContain('Phil Teasdale');
     subheadings.forEach((subheading, index) => {
@@ -63,10 +63,10 @@ describe('Profile Component', () => {
     component.user$ = of({ ...user, account: Account.User });
     fixture.detectChanges();
 
-    let label = fixture.debugElement.query(By.css('.form-select-label')).nativeElement;
+    const label = fixture.debugElement.query(By.css('.form-select-label')).nativeElement;
     expect(label.textContent).toBe('Change Account Type');
 
-    let dropdown: HTMLSelectElement = fixture.debugElement.query(By.css('select')).nativeElement;
+    const dropdown: HTMLSelectElement = fixture.debugElement.query(By.css('select')).nativeElement;
     expect(dropdown.options[1].value).toBe('BLOGGER');
     expect(dropdown.options[2].value).toBe('ADMIN');
     dropdown.value = dropdown.options[2].value;
@@ -81,7 +81,7 @@ describe('Profile Component', () => {
       component.user$ = of({ ...user, account: Account.Blogger });
       fixture.detectChanges();
 
-      let headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
+      const headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
       expect(headings[2].nativeElement.textContent).toBe('Posts');
     });
 
@@ -89,7 +89,7 @@ describe('Profile Component', () => {
       component.user$ = of({ ...user, account: Account.User });
       fixture.detectChanges();
 
-      let headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
+      const headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
       headings.forEach((heading) => {
         expect(heading.nativeElement.textContent).not.toBe('Posts');
       });
@@ -98,7 +98,7 @@ describe('Profile Component', () => {
     it('should be able to add a new post', () => {
       const dispatch = jest.spyOn(store, 'dispatch');
 
-      let post: Post = {
+      const post: Post = {
         title: 'the title',
         author: `${user.firstname} ${user.lastname}`,
         description: 'the description',
@@ -111,7 +111,7 @@ describe('Profile Component', () => {
     
     it('should be able to delete a post', () => {
       const dispatch = jest.spyOn(store, 'dispatch');
-      let id = '1234-ABCD-5678-EFGH';
+      const id = '1234-ABCD-5678-EFGH';
 
       component.deletePost(undefined);
       fixture.detectChanges();
@@ -128,7 +128,7 @@ describe('Profile Component', () => {
       component.user$ = of({ ...user, account: Account.Admin });
       fixture.detectChanges();
 
-      let headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
+      const headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
       expect(headings[3].nativeElement.textContent).toBe('Users');
     });
     
@@ -136,7 +136,7 @@ describe('Profile Component', () => {
       component.user$ = of({ ...user, account: Account.Blogger });
       fixture.detectChanges();
 
-      let headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
+      const headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
       headings.forEach((heading) => {
         expect(heading.nativeElement.textContent).not.toBe('Users');
       });
@@ -144,7 +144,7 @@ describe('Profile Component', () => {
 
     it('should be able to delete a post', () => {
       const dispatch = jest.spyOn(store, 'dispatch');
-      let id = '1234-ABCD-5678-EFGH';
+      const id = '1234-ABCD-5678-EFGH';
 
       component.deleteUser(undefined);
       fixture.detectChanges();

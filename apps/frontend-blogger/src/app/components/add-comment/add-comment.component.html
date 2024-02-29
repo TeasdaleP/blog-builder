@@ -1,0 +1,12 @@
+<div class="addcomment">
+    <div class="addcomment-inner">
+        <form [formGroup]="form">
+            <div class="form-spacing">
+                <editor [apiKey]="apikey" [init]="config" formControlName="comment"></editor>
+            </div>
+            <div class="addcomment-right">
+                <button class="button button-primary button-small" (click)="onSubmit()">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

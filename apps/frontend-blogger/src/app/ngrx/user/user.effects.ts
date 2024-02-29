@@ -45,7 +45,6 @@ export class UserEffects {
          ofType(UserAction.changeAccount),
          withLatestFrom(combineLatest([this.store.select(selectUser), this.store.select(selectUserToken)])),
          switchMap(([action, state]) => {
-            console.log(state);
             const payload: User = {
                 id: state[0].id,
                 firstname: state[0].firstname,
