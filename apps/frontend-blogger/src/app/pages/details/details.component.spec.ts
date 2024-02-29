@@ -78,11 +78,11 @@ describe('DetailsComponent', () => {
   });
 
   it('should be able to filter to one post from an array', () => {
-    component.posts$ = of(posts);
+    component.post$ = of(posts[1]);
     component.ngOnInit();
     fixture.detectChanges();
 
-    expect(component.post?.id).toBe(posts[1].id);
+    component.post$.subscribe((post) => expect(post?.id).toBe(posts[1].id));
 
     const title = fixture.debugElement.query(By.css('.details-heading')).nativeElement;
     const subheadings = fixture.debugElement.queryAll(By.css('.details-subheading'));

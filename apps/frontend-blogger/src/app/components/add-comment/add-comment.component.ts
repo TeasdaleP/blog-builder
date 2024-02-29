@@ -42,7 +42,7 @@ export class AddCommentComponent implements OnInit {
 
   private getConfiguration(): any {
     return {
-      plugins: 'anchor autolink lists visualblocks wordcount checklist tinymcespellchecker autocorrect',
+      plugins: 'anchor autolink lists visualblocks wordcount',
       toolbar: false,
       menubar: false,
       height: 150,

@@ -5,7 +5,7 @@ import { BackwardsComponent } from '../../components/backwards/backwards.compone
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavigationComponent } from '../../components/navigation/navigation.component';
 import { Store } from '@ngrx/store';
-import { Observable, ReplaySubject, takeUntil } from 'rxjs';
+import { Observable, ReplaySubject, combineLatest, map, switchMap, take, takeUntil } from 'rxjs';
 import { selectIsLoggedIn } from '../../ngrx/auth';
 import { Post } from '../../interface/post.data';
 import { selectAllPosts } from '../../ngrx/post';
@@ -27,25 +27,24 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public post: Post | undefined;
   public id!: string;
 
-  public posts$: Observable<Post[]>;
+  public post$: Observable<Post | undefined>;
   public loggedIn$: Observable<boolean>;
   public comments$: Observable<Comment[]>;
 
   private destroyed$ = new ReplaySubject<void>();
   
   constructor(private store: Store, private route: ActivatedRoute) {
+    this.route.params.subscribe((params) => { this.id = params['id'] }); 
+
     this.comments$ = this.store.select(selectComments).pipe(takeUntil(this.destroyed$));
     this.loggedIn$ = this.store.select(selectIsLoggedIn).pipe(takeUntil(this.destroyed$));
-    this.posts$ = this.store.select(selectAllPosts).pipe(takeUntil(this.destroyed$));
-
-    this.route.params.subscribe((params) => { this.id = params['id'] });
+    this.post$ = this.store.select(selectAllPosts).pipe(takeUntil(this.destroyed$),
+      map((posts) => posts.find((post) => post.id === this.id ))
+    );
   }
 
   ngOnInit(): void {
     this.store.dispatch(getComments({ postId: this.id }));
-    this.posts$.subscribe((posts) => {
-      this.post = posts.find((post) => post.id === this.id);
-    });
   }
 
   ngOnDestroy(): void {
