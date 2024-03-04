@@ -35,7 +35,7 @@ describe('Tag Controller', () => {
   });
 
   it('should be able to create a new tag via this api endpoint', async() => {
-    let newTag: CreateTagDto = {
+    const newTag: CreateTagDto = {
       name: 'Blogging'
     }
 
@@ -49,7 +49,7 @@ describe('Tag Controller', () => {
   });
 
   it('should be able to update a tag via this api endpoint', async() => {
-    let updatedTag: Tag = {
+    const updatedTag: Tag = {
       id: UUID,
       name: 'Lifestyle'
     }
