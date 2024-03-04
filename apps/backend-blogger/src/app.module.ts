@@ -9,6 +9,8 @@ import { User } from './app/users/entities/user.entities';
 import { UsersModule } from './app/users/users.module';
 import { CommentsModule } from './app/comments/comments.module';
 import { Comment } from './app/comments/entities/comment.entity';
+import { Tag } from './app/tag/entities/tag.entity';
+import { TagModule } from './app/tag/tag.module';
 
 @Module({
   imports: [
@@ -22,7 +24,7 @@ import { Comment } from './app/comments/entities/comment.entity';
       port: parseInt(process.env.DATABASE_PORT),
       password: process.env.DATABASE_PASSWORD,
       username: process.env.DATABASE_USERNAME,
-      entities: [Post, User, Comment],
+      entities: [Post, User, Comment, Tag],
       database: process.env.DATABASE_TABLE,
       synchronize: true,
       logging: true,
@@ -30,7 +32,8 @@ import { Comment } from './app/comments/entities/comment.entity';
     PostsModule,
     UsersModule,
     AuthModule,
-    CommentsModule
+    CommentsModule,
+    TagModule
   ],
   controllers: [],
   providers: [],
