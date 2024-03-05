@@ -9,6 +9,16 @@
                     <div class="form-error" *ngIf="form.controls['title'].errors && form.controls['title'].errors['required']">The Title is required</div>
                 </ng-container>
             </div>
+            <div class="form-group">
+                <!--
+                <select class="form-multiselect" id="tagging" #tagging>
+                    <option value="" selected disabled hidden>Select Tags</option>
+                    @for (tag of tags; track tag?.id; let index = $index) {
+                        <option value="tag.id">{{ tag.name | titlecase }}</option>
+                    }
+                </select>
+                -->
+            </div>
             <div class="form-spacing">
                 <editor [apiKey]="apikey" [init]="config" formControlName="description"></editor>
             </div>

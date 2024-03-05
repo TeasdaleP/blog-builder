@@ -12,15 +12,17 @@ import { addPost, deletePost, selectAllPosts } from '../../ngrx/post';
 import { Post } from '../../interface/post.data';
 import { AddPostComponent } from '../../components/add-post/add-post.component';
 import { Actions, ofType } from '@ngrx/effects';
+import { addTag, getAllTags, selectAllTags } from '../../ngrx/tags';
+import { Tag } from '../../interface/tag.data';
+import { TagsComponent } from '../../components/tags/tags.component';
 
 import * as PostActions from '../../ngrx/post';
-import { addTag, getAllTags } from '../../ngrx/tags';
-import { Tag } from '../../interface/tag.data';
+import { AddTagComponent } from '../../components/add-tag/add-tag.component';
 
 @Component({
   selector: 'blog-builder-profile',
   standalone: true,
-  imports: [CommonModule, NavigationComponent, FooterComponent, BackwardsComponent, AddPostComponent],
+  imports: [CommonModule, NavigationComponent, FooterComponent, BackwardsComponent, AddPostComponent, TagsComponent, AddTagComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
@@ -28,6 +30,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public user$: Observable<User | undefined>;
   public allUsers$: Observable<User[] | undefined>;
   public posts$: Observable<Post[]>;
+  public tags$: Observable<Tag[]>;
+
   public Account = Account;
   public postSuccess = false;
 
@@ -36,6 +40,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private store: Store, private actions: Actions) {
     this.user$ = this.store.select(selectUser).pipe(takeUntil(this.destroyed$));
     this.posts$ = this.store.select(selectAllPosts).pipe(takeUntil(this.destroyed$));
+    this.tags$ = this.store.select(selectAllTags).pipe(takeUntil(this.destroyed$));
     this.allUsers$ = this.store.select(selectAllUsers).pipe(takeUntil(this.destroyed$));
   }
 
@@ -60,9 +65,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.store.dispatch(addPost({ payload: post }));
   }
 
-  public addTag(tag: string): void {
-    const newTag: Tag = { name: tag }
-    this.store.dispatch(addTag({ payload: newTag }))
+  public addTag(tag: Tag): void {
+    this.store.dispatch(addTag({ payload: tag }))
   }
 
   public deletePost(id: string | undefined): void {

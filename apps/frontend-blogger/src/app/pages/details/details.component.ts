@@ -33,7 +33,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public post$: Observable<Post | undefined>;
   public loggedIn$: Observable<boolean>;
   public comments$: Observable<Comment[]>;
-  public tags$: Observable<Tag[]>
+  public tags$: Observable<Tag[]>;
 
   private destroyed$ = new ReplaySubject<void>();
   
