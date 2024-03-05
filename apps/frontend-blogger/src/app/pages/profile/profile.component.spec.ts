@@ -123,13 +123,33 @@ describe('Profile Component', () => {
     });
   });
 
+  describe('Tagging', () => {
+    it('should be able to see the post list with the right permissions', () => {
+      component.user$ = of({ ...user, account: Account.Admin });
+      fixture.detectChanges();
+
+      const headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
+      expect(headings[3].nativeElement.textContent).toBe('Tagging');
+    });
+
+    it('should not see users list if you got the wrong permissions', () => {
+      component.user$ = of({ ...user, account: Account.Blogger });
+      fixture.detectChanges();
+
+      const headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
+      headings.forEach((heading) => {
+        expect(heading.nativeElement.textContent).not.toBe('Tagging');
+      });
+    });
+  });
+
   describe('Users', () => {
     it('should be able to see the post list with the right permissions', () => {
       component.user$ = of({ ...user, account: Account.Admin });
       fixture.detectChanges();
 
       const headings = fixture.debugElement.queryAll(By.css('.profile-content-heading'));
-      expect(headings[3].nativeElement.textContent).toBe('Users');
+      expect(headings[4].nativeElement.textContent).toBe('Users');
     });
     
     it('should not see users list if you got the wrong permissions', () => {

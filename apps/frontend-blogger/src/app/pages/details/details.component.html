@@ -30,7 +30,7 @@
                 <div class="details-subheading">{{ (post$ | async)?.author }}</div>
             </div>
             <hr>
-            <div [innerHtml]="(post$ | async)?.description"></div>
+            <div class="details-content-description" [innerHtml]="(post$ | async)?.description"></div>
         </div>
     </div>
     <div class="details-content-card">

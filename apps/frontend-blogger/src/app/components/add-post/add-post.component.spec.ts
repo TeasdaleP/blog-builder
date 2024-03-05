@@ -8,6 +8,8 @@ describe('Add Post Component', () => {
   let component: AddPostComponent;
   let fixture: ComponentFixture<AddPostComponent>;
 
+  const id = '9ec04e53-d82a-452e-835d-dfc471f94bb1';
+
   const user: User = {
     firstname: 'phil',
     lastname: 'teasdale',
@@ -20,6 +22,7 @@ describe('Add Post Component', () => {
     title: 'the title',
     author: `${user.firstname} ${user.lastname}`,
     description: 'the description',
+    tags: [id, id]
   }
 
   beforeEach(async () => {
@@ -53,6 +56,7 @@ describe('Add Post Component', () => {
 
     component.form.get('title')?.setValue(post.title)
     component.form.get('description')?.setValue(post.description);
+    component.addedTags = [id, id];
     component.firstname = user.firstname;
     component.lastname = user.lastname;
     component.form.markAllAsTouched();

@@ -25,14 +25,16 @@ describe('DetailsComponent', () => {
       title: 'the first title',
       date: new Date(),
       author: 'the first author',
-      description: 'the first description'
+      description: 'the first description',
+      tags: [uuid]
     },
     {
       id: '1234567890',
       title: 'the second title',
       date: new Date(),
       author: 'the second author',
-      description: 'the second description'
+      description: 'the second description',
+      tags: [uuid, uuid]
     }
   ]
 
@@ -85,11 +87,9 @@ describe('DetailsComponent', () => {
     component.post$.subscribe((post) => expect(post?.id).toBe(posts[1].id));
 
     const title = fixture.debugElement.query(By.css('.details-heading')).nativeElement;
-    const subheadings = fixture.debugElement.queryAll(By.css('.details-subheading'));
-    const description = fixture.debugElement.query(By.css('.details-content-inner')).nativeElement;
+    const description = fixture.debugElement.query(By.css('.details-content-description')).nativeElement;
 
     expect(title.textContent).toBe(posts[1].title);
-    expect(subheadings[0].nativeElement.textContent).toBe(posts[1].author);
     expect(description.textContent).toBe(posts[1].description);
   });
 

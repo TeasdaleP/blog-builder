@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddCommentComponent } from './add-comment.component';
-import exp from 'constants';
 
 describe('Add Comment Component', () => {
   let component: AddCommentComponent;
