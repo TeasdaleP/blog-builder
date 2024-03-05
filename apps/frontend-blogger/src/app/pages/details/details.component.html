@@ -13,8 +13,9 @@
                 <div class="details-column-large">
                     <div class="details-card-inner">
                         <div class="details-heading">{{ (post$ | async)?.title }}</div>
-                        <div class="details-subheading">{{ (post$ | async)?.author }}</div>
-                        <div class="details-subheading">{{ (post$ | async)?.date | date: 'dd MMMM yyyy' }}</div>
+                        <ng-container *ngFor="let tag of (post$ | async)?.tags;">
+                            <blog-builder-tags [name]="getTagName(tag)"></blog-builder-tags>
+                        </ng-container>
                     </div>
                 </div>
             </div>
@@ -24,7 +25,12 @@
 <div class="details-content">
     <div class="details-content-card">
         <div class="details-content-inner">
-            <div [innerHtml]="(post$ | async)?.description"></div>
+            <div class="details-content-split">
+                <div class="details-subheading">{{ (post$ | async)?.date | date: 'dd MMMM yyyy' }}</div>
+                <div class="details-subheading">{{ (post$ | async)?.author }}</div>
+            </div>
+            <hr>
+            <div class="details-content-description" [innerHtml]="(post$ | async)?.description"></div>
         </div>
     </div>
     <div class="details-content-card">

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } 
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { environment } from '../../../environments/environment';
 import { Post } from '../../interface/post.data';
+import { Tag } from '../../interface/tag.data';
 
 @Component({
   selector: 'blog-builder-add-post',
@@ -15,7 +16,9 @@ import { Post } from '../../interface/post.data';
 export class AddPostComponent implements OnInit {
   @Input() firstname: string | undefined;
   @Input() lastname: string | undefined;
+  @Input() tags: Tag[] | null | undefined;
 
+  public addedTags: string[] = [];
   public apikey: string = environment.tinymce;
   public form: FormGroup;
   public config: any;
@@ -37,11 +40,22 @@ export class AddPostComponent implements OnInit {
     }
   }
 
+  public includeTags(id: string | undefined): void {
+    if (typeof id === 'string') {
+      if (this.addedTags.includes(id)) {
+        this.addedTags = this.addedTags.filter((tag) => tag !== id);
+      } else {
+        this.addedTags.push(id);
+      }
+    }
+  }
+
   private getPostPayload(): Post {
     return {
       title: this.form.get('title')?.value,
       description: this.form.get('description')?.value,
-      author: `${this.firstname} ${this.lastname}`
+      author: `${this.firstname} ${this.lastname}`,
+      tags: this.addedTags
     }
   }
 

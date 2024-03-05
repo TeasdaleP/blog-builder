@@ -72,10 +72,11 @@
         line-height: 48px;
         letter-spacing: 0;
         color: $blog-secondary;
+        padding-bottom: 26px;
     }
 
     &-subheading {
-        font-family: $font-content;
+        font-family: $font-heading;
         font-style: normal;
         font-weight: 500;
         font-size: 18px;
@@ -110,6 +111,12 @@
 
         &-inner {
             padding: 32px 44px 32px 44px;
+        }
+
+        &-split {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
     }
 

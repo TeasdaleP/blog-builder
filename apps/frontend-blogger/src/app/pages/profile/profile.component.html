@@ -38,14 +38,13 @@
             </div>
         </div>
     </div>
-    <!-- <div class="profile-content-card" *ngIf="(user$ | async)?.account !== Account.User"> -->
     <div class="profile-content-card" *ngIf="(user$ | async)?.account !== Account.User">
         <div class="profile-content-inner">
             <div class="profile-content-heading">New Post</div>
             <div class="profile-notification" *ngIf="postSuccess">
                 Result! Your Post has been submitted successfully...
             </div>
-            <blog-builder-add-post [firstname]="(user$ | async)?.firstname" [lastname]="(user$ | async)?.lastname" (newPost)="addPost($event)"></blog-builder-add-post>
+            <blog-builder-add-post [firstname]="(user$ | async)?.firstname" [lastname]="(user$ | async)?.lastname" [tags]="tags$ | async" (newPost)="addPost($event)"></blog-builder-add-post>
         </div>
     </div>
     <div class="profile-content-card" *ngIf="(user$ | async)?.account !== Account.User">
@@ -72,6 +71,15 @@
                     Sorry. There are currently no posts to display.
                 </div>
             </ng-template>
+        </div>
+    </div>
+    <div class="profile-content-card" *ngIf="(user$ | async)?.account === Account.Admin">
+        <div class="profile-content-inner">
+            <div class="profile-content-heading">Tagging</div>
+            <blog-builder-add-tag (newTag)="addTag($event)"></blog-builder-add-tag>
+            @for (tag of tags$ | async; track tag?.id; let index = $index) {
+                <blog-builder-tags [name]="tag.name"></blog-builder-tags>
+            }
         </div>
     </div>
     <div class="profile-content-card" *ngIf="(user$ | async)?.account === Account.Admin">

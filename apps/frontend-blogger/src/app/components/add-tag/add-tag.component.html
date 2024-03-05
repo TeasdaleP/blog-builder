@@ -1,0 +1,13 @@
+<div class="addtag">
+    <form class="addtag-inner" [formGroup]="form">
+        <div class="form-group form-group-full form-spacing">
+            <input class="form-input" id="name" type="text" formControlName="name" placeholder=" " />
+            <div class="form-spacer form-short"></div>
+            <label class="form-label" for="name">Add New Tag</label>
+            <ng-container *ngIf="form.controls['name'].touched && form.controls['name'].invalid">
+                <div class="form-error" *ngIf="form.controls['name'].errors && form.controls['name'].errors['required']">The Tag Name is required</div>
+            </ng-container>
+        </div>
+        <button class="button button-primary button-small" (click)="onSubmit()">Submit</button>
+    </form>
+</div>
