@@ -14,7 +14,7 @@
                     <div class="details-card-inner">
                         <div class="details-heading">{{ (post$ | async)?.title }}</div>
                         <ng-container *ngFor="let tag of (post$ | async)?.tags;">
-                            <blog-builder-tags [name]="tag"></blog-builder-tags>
+                            <blog-builder-tags [name]="getTagName(tag)"></blog-builder-tags>
                         </ng-container>
                     </div>
                 </div>

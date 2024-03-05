@@ -34,6 +34,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public loggedIn$: Observable<boolean>;
   public comments$: Observable<Comment[]>;
   public tags$: Observable<Tag[]>;
+  public tags: Tag[] | undefined;
 
   private destroyed$ = new ReplaySubject<void>();
   
@@ -51,6 +52,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store.dispatch(getAllTags());
     this.store.dispatch(getComments({ postId: this.id }));
+
+    this.tags$.subscribe((tags) => this.tags = tags);
   }
 
   ngOnDestroy(): void {
@@ -60,5 +63,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   public handleAddComment(event: string): void {
     this.store.dispatch(addComment({ comment: event, postId: this.id }));
-  } 
+  }
+
+  public getTagName(id: string | undefined): string | undefined{
+    return this.tags?.find((tag) => tag.id === id)?.name
+  }
 }

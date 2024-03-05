@@ -18,6 +18,7 @@ export class AddPostComponent implements OnInit {
   @Input() lastname: string | undefined;
   @Input() tags: Tag[] | null | undefined;
 
+  public addedTags: string[] = [];
   public apikey: string = environment.tinymce;
   public form: FormGroup;
   public config: any;
@@ -39,19 +40,28 @@ export class AddPostComponent implements OnInit {
     }
   }
 
+  public includeTags(id: string | undefined): void {
+    if (typeof id === 'string') {
+      if (this.addedTags.includes(id)) {
+        this.addedTags = this.addedTags.filter((tag) => tag !== id);
+      } else {
+        this.addedTags.push(id);
+      }
+    }
+  }
+
   private getPostPayload(): Post {
     return {
       title: this.form.get('title')?.value,
       description: this.form.get('description')?.value,
       author: `${this.firstname} ${this.lastname}`,
-      tags: this.form.get('tags')?.value
+      tags: this.addedTags
     }
   }
 
   private formSetup(): FormGroup { 
     return this.fb.group({
       title: ['', Validators.required],
-      tags: ['', Validators.required],
       description: ['', Validators.required]
     });
   }
