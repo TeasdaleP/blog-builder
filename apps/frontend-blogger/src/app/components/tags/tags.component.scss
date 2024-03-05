@@ -1,0 +1,32 @@
+@import '../../../styles.scss';
+
+.tag {
+    display: inline-block;
+    width: auto;
+	height: 38px;
+	background-color: $blog-primary;
+	-webkit-border-radius: 3px 4px 4px 3px;
+	-moz-border-radius: 3px 4px 4px 3px;
+	border-radius: 3px 4px 4px 3px;
+	border-left: 1px solid $blog-primary;
+	margin-left: 19px;
+	position: relative;
+	color: $blog-secondary;
+	font-size: 14px;
+	line-height: 38px;
+	padding: 0 10px 0 10px;
+    margin-right: 10px;
+}
+
+.tag:before {
+    content: "";
+	position: absolute;
+	display: block;
+	left: -19px;
+	width: 0;
+	height: 0;
+	border-top: 19px solid transparent;
+	border-bottom: 19px solid transparent;
+	border-right: 19px solid $blog-primary;
+    border-radius: 5px;
+}

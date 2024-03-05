@@ -14,6 +14,8 @@ import { AddPostComponent } from '../../components/add-post/add-post.component';
 import { Actions, ofType } from '@ngrx/effects';
 
 import * as PostActions from '../../ngrx/post';
+import { addTag, getAllTags } from '../../ngrx/tags';
+import { Tag } from '../../interface/tag.data';
 
 @Component({
   selector: 'blog-builder-profile',
@@ -38,6 +40,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(getAllTags());
     this.actions.pipe(ofType(PostActions.addPostSuccess), takeUntil(this.destroyed$)).subscribe(() => {
       this.postSuccess = true;
       setTimeout(() => { this.postSuccess = false }, 3000);
@@ -55,6 +58,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public addPost(post: Post): void {
     this.store.dispatch(addPost({ payload: post }));
+  }
+
+  public addTag(tag: string): void {
+    const newTag: Tag = { name: tag }
+    this.store.dispatch(addTag({ payload: newTag }))
   }
 
   public deletePost(id: string | undefined): void {

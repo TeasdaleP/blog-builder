@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserEffects, userReducer } from './ngrx/user';
 import { PostEffects, postReducer } from './ngrx/post';
 import { CommentsEffects, commentReducer } from './ngrx/comments';
+import { TagEffects, tagsReducer } from './ngrx/tags';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,13 +21,14 @@ export const appConfig: ApplicationConfig = {
       auth: authReducer,
       user: userReducer,
       posts: postReducer,
-      comments: commentReducer
+      comments: commentReducer,
+      tags: tagsReducer
     }),
     provideStoreDevtools({
       maxAge: 25,
       autoPause: true,
       trace: false
     }),
-    provideEffects([AuthEffects, UserEffects, PostEffects, CommentsEffects]),
+    provideEffects([AuthEffects, UserEffects, PostEffects, CommentsEffects, TagEffects]),
   ],
 };
